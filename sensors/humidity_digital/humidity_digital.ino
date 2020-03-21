@@ -1,16 +1,4 @@
-# Sensors
-## Humidity (Digital)
-
-Using the DHT11 or DHT22 and an ESP32 we can measure the air relative humidity using the following example.
-
-### Hardware
-* ESP32
-* DHT11 or DHT22
-
-### Code
-* [humidity_digital.ino](/humidity_digital.ino)
-```
-#include "DHT.h"  // Includes the DHT library
+#include "DHT.h"
 
 #define DHT_PIN 21  // Defines pin number to which the sensor is connected 
 #define DHT_TYPE DHT22  // Defines the sensor type. It can be DHT11 or DHT22
@@ -32,7 +20,3 @@ void loop(){
   Serial.println("Humidity: " + String(h) + "%");  // Prints in a new line the result
   delay(REFRESH_RATE*1000);  // Freezes the loop for X milliseconds
 }
-```
-
-### Libraries
-* [DHTlib.zip](/lib/DHTlib.zip) ([Link](https://lastminuteengineers.com/esp32-dht11-dht22-web-server-tutorial/))

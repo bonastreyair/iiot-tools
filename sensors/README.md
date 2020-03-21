@@ -12,10 +12,12 @@ This text should explain what does this example do.
 This text should explain what does this example do.
 
 ## Humidity (Digital)
-This text should explain what does this example do.
+Using the DHT11 or DHT22 we can measure the air relative humidity using the following example.
+* [Code Example](/humidity_digital/humidity_digital.ino)
 
 ## Temperature (Digital)
-This text should explain what does this example do.
+Using the DHT11 or DHT22 we can measure the air temperature using the following example.
+* [Code Example](/temperature_digital/temperature_digital.ino)
 
 ## Temperature (Analog)
 This text should explain what does this example do.

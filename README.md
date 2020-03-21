@@ -7,7 +7,6 @@ Each of the referenced examples will consist of a simple `code` in Arduino IDE f
 
 ```
 .
-+-- [basic](/basic)/
 +-- [sensors](/sensors)/
 |   +-- [button](/sensors/button)/
 |   +-- [temperature analog](/sensors/temperature_analog)/
