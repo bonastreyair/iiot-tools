@@ -5,8 +5,8 @@ Using the DHT11 or the DHT22 we can measure the air relative humidity using the 
 
 ### Hardware
 * ESP32
-* DHT11 - [Datasheet](datasheet_dht11.pdf) - [Source DFRobot](https://image.dfrobot.com/image/data/KIT0003/DHT11%20datasheet.pdf)
-* DHT22 - [Datasheet](datasheet_dht22.pdf) - [Source SparkFun](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
+* DHT11 - [Datasheet](docs/datasheet_dht11.pdf) - [Source DFRobot](https://image.dfrobot.com/image/data/KIT0003/DHT11%20datasheet.pdf)
+* DHT22 - [Datasheet](docs/datasheet_dht22.pdf) - [Source SparkFun](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
 
 ### Code
 * [humidity_digital.ino](humidity_digital.ino)
@@ -36,4 +36,5 @@ void loop(){
 ```
 
 ### Libraries
-* [DHTlib.zip](lib/DHTlib.zip) ([Link](https://lastminuteengineers.com/esp32-dht11-dht22-web-server-tutorial/))
+* DHT sensor library by Adafruit - Installed from Arduino IDE Library management
+![dht_library](/docs/dht_installation.png)
