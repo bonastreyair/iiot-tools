@@ -9,8 +9,8 @@ float h;  // Variable that will store the last humidity value
 
 void setup(){
   Serial.begin(9600);
-  Serial.println("Booting device...");
 
+  Serial.println("Starting sensor...");
   dht.begin();  // Starts sensor communication
 }
 

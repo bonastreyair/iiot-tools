@@ -9,8 +9,8 @@ float t;  // Variable that will store the last temperature value
 
 void setup(){
   Serial.begin(9600);
-  Serial.println("Booting device...");
 
+  Serial.println("Starting sensor...");
   dht.begin();  // Starts sensor communication
 }
 
