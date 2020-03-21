@@ -18,5 +18,6 @@ void loop(){
   h = dht.readHumidity();  // Reads the humidity, it takes about 250 milliseconds
   
   Serial.println("Humidity: " + String(h) + "%");  // Prints in a new line the result
+  
   delay(REFRESH_RATE*1000);  // Freezes the loop for X milliseconds
 }

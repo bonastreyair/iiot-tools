@@ -18,5 +18,6 @@ void loop(){
   t = dht.readTemperature();  // Reads the temperature, it takes about 250 milliseconds
   
   Serial.println("Temperature: " + String(t) + "°C");  // Prints in a new line the result
+  
   delay(REFRESH_RATE*1000);  // Freezes the loop for X milliseconds
 }
