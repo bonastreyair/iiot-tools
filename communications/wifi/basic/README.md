@@ -64,4 +64,4 @@ void connectToNetwork() {
 
 ### Libraries
 * Wifi library by [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management
-![WiFi_library](WiFi_library.png)
+![WiFi_library](wifi/WiFi_library.png)
