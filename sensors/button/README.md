@@ -1,41 +1,48 @@
 # Sensor
 ## Button
-
-Using the DHT11 or the DHT22 sensors we can measure the air temperature.
+Using the button we can control the state of a LED.
 
 ### Hardware
 * ESP32
-* [DHT11](docs/datasheet_dht11.pdf) - [DFRobot Source](https://image.dfrobot.com/image/data/KIT0003/DHT11%20datasheet.pdf)
-* [DHT22](docs/datasheet_dht22.pdf) - [SparkFun Source](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
+* [Button](docs/datasheet_button.pdf) - [4donline Source](https://4donline.ihs.com/images/VipMasterIC/IC/OMRN/OMRN-S-A0001309768/OMRN-S-A0001309768-1.pdf?hkey=52A5661711E402568146F3353EA87419)
+* [LED](docs/datasheet_led.pdf) - [Farnell Source](http://www.farnell.com/datasheets/2861525.pdf?_ga=2.19618812.573571583.1584967001-1225251318.1584967001) 
 
 ### Code
-* [temperature_digital.ino](temperature_digital.ino)
+* [button.ino](button.ino)
 ```cpp
-#include "DHT.h"  // Includes the DHT library
-
-#define DHT_PIN 21  // Defines pin number to which the sensor is connected 
-#define DHT_TYPE DHT22  // Defines the sensor type. It can be DHT11 or DHT22
-#define REFRESH_RATE  2 // Defined in seconds
-
-DHT dht(DHT_PIN, DHT_TYPE);  // Defines the sensor
-float t;  // Variable that will store the last temperature value
-
-void setup(){
+// constants won't change. They're used here to
+// set pin numbers:
+const int buttonPin = 2;     // the number of the pushbutton pin
+const int ledPin =  13;      // the number of the LED pin
+// variables will change:
+int buttonState = 0;         // variable for reading the pushbutton status
+void setup() {
   Serial.begin(9600);
-
-  Serial.println("Starting sensor...");
-  dht.begin();  // Starts sensor communication
+  // initialize the LED pin as an output:
+  pinMode(ledPin, OUTPUT);
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPin, INPUT);
 }
-
-void loop(){
-  t = dht.readTemperature();  // Reads the temperature, it takes about 250 milliseconds
-  
-  Serial.println("Temperature: " + String(t) + "°C");  // Prints in a new line the result
-  
-  delay(REFRESH_RATE*1000);  // Freezes the loop for X milliseconds
+void loop() {
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(buttonPin);
+  // Show the state of pushbutton on serial monitor
+  Serial.println(buttonState);
+  // check if the pushbutton is pressed.
+  // if it is, the buttonState is HIGH:
+  if (buttonState == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin, HIGH);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin, LOW);
+  }
+  // Added the delay so that we can see the output of button
+  delay(100);
 }
 ```
 
 ### Libraries
-* DHT sensor library by [Adafruit](https://www.adafruit.com/) - Installed from the Arduino IDE Library Management
-![dht_library](docs/dht_installation.png)
+* No needed libraries
+### Image
+* [Connection image](docs/arduino_button.jpeg)
