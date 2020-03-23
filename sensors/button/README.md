@@ -36,5 +36,5 @@ void loop() {
 ### Libraries
 * No extra libraries needed
 
-### Image
-* [Connection image](docs/arduino_button.jpeg)
+### Connection
+![Connection image](docs/arduino_button.jpeg)
