@@ -83,5 +83,5 @@ void print_request_info(){
 ```
 
 ### Libraries
-* Wifi and WebServer libraryby [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management
+* Wifi library by [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management
 ![WiFi_library](../WiFi_library.png)

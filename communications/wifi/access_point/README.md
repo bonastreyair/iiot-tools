@@ -5,6 +5,7 @@ Code to enable and ESP32 to create its own WiFi network (Access Point - AP) and 
 	
 ### Code
 * [access_point.ino](access_point.ino)
+
 ```cpp
 #include <WiFi.h> // Includes the WiFi library
 

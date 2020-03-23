@@ -1,53 +1,40 @@
-#include <WiFi.h> //Includes the WiFi library
+#include <WiFi.h>  // Includes the WiFi library
 
-const char* ssid = "yourNetworkName"; //Change to your SSID Network which wants to connect
-const char* password = "yourNetworkPassword"; //Change to your SSID Network which wants to connect
+/* Put your SSID and Password */
+const char *WIFI_SSID = "YOUR_SSID_NAME";  // Enter SSID here
+const char *PASSWORD = "YOUR_WIFI_PASSWORD";  // Enter Password here
 
 void setup() {
   Serial.begin(9600);
-  
   scanNetworks();
-  connectToNetwork();
-
-  Serial.print("Your IP: ");       //After being connected to a network, our ESP32 should have a IP
-  Serial.println(WiFi.localIP());  //Print this local IP assigned
-
+  connectToNetwork();  // Connect the configured network 
+  Serial.print("Device IP: ");  // After being connected to a network, our ESP32 should have a IP
+  Serial.println(WiFi.localIP());
 }
 
 void loop() {
-  if (WiFi.status() != WL_CONNECTED) { //If Wifi disconnected, it tries to recconect
-    connectToNetwork();
+  if (WiFi.status() != WL_CONNECTED) {  // If Wifi disconnected, it tries to reconnect
+    Serial.print("Wifi has been disconnected. Trying to reconnect...");
+    connectToNetwork();  // Connect the configured network 
   }
-
+  delay(1000);  // Checks every 1000 miliseconds if it has been disconnected
 }
 
-void scanNetworks(){
+/* Additional functions */
+void scanNetworks() {
   int numberOfNetworks = WiFi.scanNetworks();
-
-  Serial.print("Number of networks found: ");
-  Serial. println (numberOfNetworks);
-
+  Serial.println("Number of networks found: " + String(numberOfNetworks));
   for (int i = 0; i < numberOfNetworks; i++) {
-    Serial.print("Network name: ");
-    Serial.println(WiFi.SSID(i));
-
-    Serial.print("Signal strength: ");
-    Serial.println(WiFi.RSSI(i));
-
-    Serial.println("---------------------");
+    Serial.println("SSID: " + String(WiFi.SSID(i)) + " | RSSI:" + String(WiFi.RSSI(i)));
   }
 }
 
 void connectToNetwork() {
-  WiFi.begin(ssid, password);
-  Serial.print("Connecting with ");
-  Serial.print(ssid); //Print the network which you want to connect
-  Serial.println();
-  
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
+  WiFi.begin(WIFI_SSID, PASSWORD);
+  Serial.print("Connecting with " + String(WIFI_SSID)); // Print the network which you want to connect  
+  while (WiFi.status() != WL_CONNECTED) {  // Connecting effect
+    delay(500);
     Serial.print("..");
   }
-  Serial.println();
-  Serial.println("Connected to network");
+  Serial.println("connected!");
 }

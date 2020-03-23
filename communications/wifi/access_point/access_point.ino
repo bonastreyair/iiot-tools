@@ -1,6 +1,6 @@
 #include <WiFi.h> // Includes the WiFi library
 
-/* Put your SSID and Password */
+/* Put your desired SSID and Password */
 const char *WIFI_SSID = "YOUR_SSID_NAME";  // Enter SSID here
 const char *PASSWORD = "YOUR_WIFI_PASSWORD";  // Enter Password here
 
