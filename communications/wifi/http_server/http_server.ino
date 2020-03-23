@@ -1,11 +1,3 @@
-#Communications
-## Wifi
-### HTTP Server
-Code to create a HTTP server in your network.
-	
-###Code
-* [http_server.ino](http_server.ino)
-```cpp
 #include <WiFi.h>
 #include <WebServer.h>
 
@@ -63,7 +55,3 @@ void connectToNetwork() {
   Serial.println();
   Serial.println("Connected to network");
 }
-```
-### Libraries
-* Wifi and WebServer libraryby [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management
-![WiFi_library](wifi/WiFi_library.png)
