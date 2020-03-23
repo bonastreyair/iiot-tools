@@ -17,7 +17,7 @@ void loop() {
   // if it is, the buttonState is HIGH:
   if (buttonState == HIGH) {
   // Show the state of pushbutton on serial monitor
-  Serial.println('Button pressed');
+  Serial.print("Button pressed\n");
   } else {
   //Nothing
   }
