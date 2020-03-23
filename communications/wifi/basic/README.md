@@ -1,9 +1,8 @@
 #Communications
 ## Wifi
 ### Basic
-There are two functions. 
-	- scanNetworks(); Scan the surrounding available WiFi networks and print some information about them. 
-	- connectToNetwork(); Try to connect the device to your WiFi network.
+
+Code to scan the surrounding networks and connect with one.
 	
 ###Code
 * [basic.ino](basic.ino)
@@ -16,8 +15,8 @@ const char* password = "yourNetworkPassword"; //Change to your SSID Network whic
 void setup() {
   Serial.begin(9600);
   
-  scanNetworks();
-  connectToNetwork();
+  scanNetworks(); //Scan the surrounding available WiFi networks and print some information about them
+  connectToNetwork(); //Try to connect the device to your WiFi network
 
   Serial.print("Your IP: ");       //After being connected to a network, our ESP32 should have a IP
   Serial.println(WiFi.localIP());  //Print this local IP assigned
