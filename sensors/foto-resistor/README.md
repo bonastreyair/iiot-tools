@@ -4,40 +4,38 @@ Using the button to control states.
 
 ### Hardware
 * ESP32
-* [Button](docs/datasheet_button.pdf) - [4donline Source](https://4donline.ihs.com/images/VipMasterIC/IC/OMRN/OMRN-S-A0001309768/OMRN-S-A0001309768-1.pdf?hkey=52A5661711E402568146F3353EA87419)
+* [Foto-resistor](docs/datasheet_button.pdf) - [4donline Source](https://4donline.ihs.com/images/VipMasterIC/IC/OMRN/OMRN-S-A0001309768/OMRN-S-A0001309768-1.pdf?hkey=52A5661711E402568146F3353EA87419)
 
 ### Code
-* [button.ino](button.ino)
+* [fotoresistor.ino](fotoresistor.ino)
 ```cpp
-// constants won't change. They're used here to
-// set pin number:
-const int buttonPin = 2;     // the number of the pushbutton pin (2-> digital pin)
-
-// variables will change:
-int buttonState = 0;         // variable for reading the pushbutton status
-void setup() {
-  Serial.begin(9600);
-  // initialize the pushbutton pin as an input:
-  pinMode(buttonPin, INPUT);
+const long A = 1000;     //Resistance in darkness in KΩ
+const int B = 15;        //Resistance in brightness (10 Lux) in KΩ
+const int Rc = 10;       //Calibration resistance in KΩ
+const int LDRPin = 33;   //LDR Pin
+ 
+int V;
+int ilum;
+ 
+void setup() 
+{
+   Serial.begin(115200);
+   analogReadResolution(12);
 }
-void loop() {
-  // read the state of the pushbutton value:
-  buttonState = digitalRead(buttonPin);
-  
-  // check if the pushbutton is pressed.
-  // if it is, the buttonState is HIGH:
-  if (buttonState == HIGH) {
-  // Show the state of pushbutton on serial monitor
-  Serial.print("Button pressed\n");
-  } else {
-  //Nothing
-  }
-  // Added the delay so that we can see the output of button
-  delay(100);
+ 
+void loop()
+{
+   V = analogRead(LDRPin);         
+ 
+   //ilum = ((long)(1024-V)*A*10)/((long)B*Rc*V);  //use if LDR between GND & 33 
+   ilum = ((long)V*A*10)/((long)B*Rc*(4096-V));    //use if LDR between 33 & Vcc (like in the image)
+   //Serial.println(V);   
+   Serial.println(ilum);   
+   delay(1000);
 }
 ```
 
 ### Libraries
 * No needed libraries
 ### Image
-* [Connection image](docs/arduino_button.jpeg)
+* [Connection image](docs/fotoresistor.jpeg)
