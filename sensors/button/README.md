@@ -9,35 +9,32 @@ Using the button to control states.
 ### Code
 * [button.ino](button.ino)
 ```cpp
-// constants won't change. They're used here to
-// set pin number:
-const int buttonPin = 2;     // the number of the pushbutton pin (2-> digital pin)
+#define BUTTON_PIN 2  // The number of the pushbutton pin (2-> digital pin)
 
-// variables will change:
-int buttonState = 0;         // variable for reading the pushbutton status
+int buttonState = 0;  // Variable for reading the pushbutton status
+
 void setup() {
   Serial.begin(9600);
-  // initialize the pushbutton pin as an input:
-  pinMode(buttonPin, INPUT);
+
+  pinMode(BUTTON_PIN, INPUT);  // Initialize the button pin as an input
 }
+
 void loop() {
-  // read the state of the pushbutton value:
-  buttonState = digitalRead(buttonPin);
+  buttonState = digitalRead(BUTTON_PIN);  // Read the state of the button value
   
-  // check if the pushbutton is pressed.
-  // if it is, the buttonState is HIGH:
+  // Show the state of button on serial monitor
   if (buttonState == HIGH) {
-  // Show the state of pushbutton on serial monitor
-  Serial.print("Button pressed\n");
+    Serial.println('Button pressed');
   } else {
-  //Nothing
+    Serial.println('Button is not pressed');
   }
-  // Added the delay so that we can see the output of button
-  delay(100);
+
+  delay(1000);  // Check the button every 1000 miliseconds
 }
 ```
 
 ### Libraries
-* No needed libraries
+* No extra libraries needed
+
 ### Image
 * [Connection image](docs/arduino_button.jpeg)
