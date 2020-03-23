@@ -1,69 +1,87 @@
-#Communications
-## Wifi
-### HTTP Server
-Code to create a HTTP server in your network.
-	
-###Code
+# Communications
+## Wifi - HTTP Server
+Code to create a HTTP server in your network enabling GET and PUT methods.
+  
+### Code
 * [http_server.ino](http_server.ino)
+
 ```cpp
-#include <WiFi.h>
-#include <WebServer.h>
+#include <WiFi.h> // Includes the WiFi library
+#include <WebServer.h>  // Includes WebServer library
 
-/*Put your SSID & Password*/
-const char* ssid = "YourNetwork";  // Enter SSID here
-const char* password = "YourPassword";  //Enter Password here
+/* Put your SSID and Password */
+const char *WIFI_SSID = "YOUR_SSID_NAME";  // Enter SSID here
+const char *PASSWORD = "YOUR_WIFI_PASSWORD";  // Enter Password here
 
-WebServer server(80);
+WebServer server(80);  // Creates server on standard port 80
 
 void setup() {
   Serial.begin(9600);
 
-  connectToNetwork();
-  Serial.print("Your IP: ");       //After being connected to a network, our ESP32 should have a IP
-  Serial.println(WiFi.localIP());  //Print this local IP assigned
-
+  connectToNetwork();  // Connect the configured network 
+  Serial.print("Device IP: ");  // After being connected to a network, our ESP32 should have a IP
+  Serial.println(WiFi.localIP());
+  
+  // Define active server endpoints
   server.on("/", handle_OnConnect);
-  server.on("/Hello", handle_hello);
+  server.on("/hello", handle_Hello);
   server.onNotFound(handle_NotFound);
 
-  server.begin();
-  Serial.println("HTTP server started");
+  server.begin();  // Start the server
+  Serial.println("HTTP Server has started");
 }
+
 void loop() {
-   if (WiFi.status() != WL_CONNECTED) { //If Wifi disconnected, it tries to recconect
-    connectToNetwork();
+  if (WiFi.status() != WL_CONNECTED) {  // If Wifi disconnected, it tries to reconnect
+    Serial.print("Wifi has been disconnected. Trying to reconnect...");
+    connectToNetwork();  // Connect the configured network 
   }
-  server.handleClient();
+  server.handleClient();  // If there is a new connection it handles it
+}
+
+/* Additional functions */
+void connectToNetwork() {
+  WiFi.begin(WIFI_SSID, PASSWORD);
+  Serial.print("Connecting with " + String(WIFI_SSID)); // Print the network which you want to connect  
   
+  while (WiFi.status() != WL_CONNECTED) {  // Connecting effect
+    delay(500);
+    Serial.print("..");
+  }
+  Serial.println("connected!");
 }
 
 void handle_OnConnect() {
-  server.send(200, "text/html", "Write /Hello"); 
+  server.send(200, "text/html", "Main page. Try to go to /hello endpoint"); 
+  print_request_info();
 }
 
-void handle_hello() {
- server.send(200, "text/html", "Hello-world!"); 
+void handle_Hello() {
+  server.send(200, "text/html", "Hello-world!"); 
+  print_request_info();
 }
 
 void handle_NotFound(){
   server.send(404, "text/plain", "Not found");
+  print_request_info();
 }
 
-
-void connectToNetwork() {
-  WiFi.begin(ssid, password);
-  Serial.print("Connecting with ");
-  Serial.print(ssid); //Print the network which you want to connect
-  Serial.println();
-  
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.print("..");
+void print_request_info(){
+  String server_method = (server.method() == HTTP_GET) ? "GET" : "PUT";
+  Serial.println("New " + server_method + " request to " + String(server.uri()));
+  if (server.args()) {
+    Serial.println("Arguments");
+    String arguments = "";
+    for (uint8_t i = 0; i < server.args(); i++) {
+      arguments += " - " + server.argName(i) + ": " + server.arg(i) + "\n";
+    }
+    Serial.println(arguments);
+  } else {
+    Serial.println("No arguments\n");
   }
-  Serial.println();
-  Serial.println("Connected to network");
 }
 ```
+
 ### Libraries
 * Wifi and WebServer libraryby [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management
-![WiFi_library](wifi/WiFi_library.png)
+![WiFi_library](../WiFi_library.png)
