@@ -1,13 +1,12 @@
 # Communications
-## Wifi
-### Access Point
+## Wifi - Access Point
 
 Code to enable and ESP32 to create its own WiFi network (Access Point - AP) and act as a hub (like WiFi router) for one or more stations. The maximum number of stations that can connect to it is limited to five.
 	
 ### Code
-* [acces_point.ino](acces_point.ino)
+* [access_point.ino](access_point.ino)
 ```cpp
-#include <WiFi.h>
+#include <WiFi.h>  // Includes the WiFi library
 
 /* Put your SSID & Password */
 const char* SSID = "ESP32";  // Enter SSID here
