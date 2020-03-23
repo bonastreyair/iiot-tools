@@ -1,5 +1,5 @@
 # Sensor
-## Button
+## Fotoresistor
 Using the button to control states.
 
 ### Hardware
@@ -9,33 +9,32 @@ Using the button to control states.
 ### Code
 * [fotoresistor.ino](fotoresistor.ino)
 ```cpp
-const long A = 1000;     //Resistance in darkness in KΩ
-const int B = 15;        //Resistance in brightness (10 Lux) in KΩ
-const int Rc = 10;       //Calibration resistance in KΩ
-const int LDRPin = 33;   //LDR Pin
+#define DARKNESS_RES  1000  // Resistance in darkness in KΩ
+#define BRIGHTNESS_RES  15  // Resistance in brightness (10 Lux) in KΩ
+#define CALIBRARION_RES 10  // Calibration resistance in KΩ
+#define LDR_PIN         33  // LDR Pin
  
-int V;
-int ilum;
+int voltage;
+int ilumination;
  
-void setup() 
-{
-   Serial.begin(115200);
-   analogReadResolution(12);
+void setup(){
+   Serial.begin(9600);
+   analogReadResolution(12);  // Sets the reading resolution value to 12 bits (0-4095)
 }
  
-void loop()
-{
-   V = analogRead(LDRPin);         
+void loop(){
+   voltage = analogRead(LDR_PIN); // Reads the value from the pin in a 0-4095 resolution corresponding to a linear 0-3.3V        
  
-   //ilum = ((long)(1024-V)*A*10)/((long)B*Rc*V);  //use if LDR between GND & 33 
-   ilum = ((long)V*A*10)/((long)B*Rc*(4096-V));    //use if LDR between 33 & Vcc (like in the image)
-   //Serial.println(V);   
+   ilumination = ((long)V*DARKNESS_RES*10)/((long)BRIGHTNESS_RES*CALIBRARION_RES*(4096-V));  // Use if LDR between 33 & Vcc (like in the image)  
+   
    Serial.println(ilum);   
+   
    delay(1000);
 }
 ```
 
 ### Libraries
 * No needed libraries
+
 ### Image
 * [Connection image](docs/fotoresistor.jpeg)
