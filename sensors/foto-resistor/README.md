@@ -37,4 +37,4 @@ void loop(){
 * No needed libraries
 
 ### Connection
-![Connection image](docs/fotoresistor.jpeg)
+![Connection image](docs/fotoresistor.png)
