@@ -4,7 +4,7 @@ Using the button to control states.
 
 ### Hardware
 * ESP32
-* [Foto-resistor](docs/datasheet_button.pdf) - [4donline Source](https://4donline.ihs.com/images/VipMasterIC/IC/OMRN/OMRN-S-A0001309768/OMRN-S-A0001309768-1.pdf?hkey=52A5661711E402568146F3353EA87419)
+* [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [4donline Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)
 
 ### Code
 * [fotoresistor.ino](fotoresistor.ino)
