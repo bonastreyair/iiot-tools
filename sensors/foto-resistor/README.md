@@ -1,10 +1,10 @@
 # Sensor
 ## Fotoresistor
-Using the button to control states.
+Using the foto-reisitor to measure luminosity.
 
 ### Hardware
 * ESP32
-* [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [4donline Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)
+* [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [KTH Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)
 
 ### Code
 * [fotoresistor.ino](fotoresistor.ino)
