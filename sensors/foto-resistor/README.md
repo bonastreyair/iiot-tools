@@ -7,29 +7,31 @@ Using the foto-reisitor to measure luminosity.
 * [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [KTH Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)
 
 ### Code
-* [fotoresistor.ino](fotoresistor.ino)
+* [foto-resistor.ino](foto-resistor.ino)
 ```cpp
 #define DARKNESS_RES  1000  // Resistance in darkness in KΩ
 #define BRIGHTNESS_RES  15  // Resistance in brightness (10 Lux) in KΩ
 #define CALIBRARION_RES 10  // Calibration resistance in KΩ
 #define LDR_PIN         33  // LDR Pin
- 
-int voltage;
-int ilumination;
+
+#define ANALOG_BIT_RESOLUTION 12.0
+
+int voltage_measure;
+int lux_measure;
  
 void setup(){
    Serial.begin(9600);
-   analogReadResolution(12);  // Sets the reading resolution value to 12 bits (0-4095)
+   analogReadResolution(ANALOG_BIT_RESOLUTION);  // Sets the reading resolution value to 12 bits (0-4095)
 }
  
 void loop(){
-   voltage = analogRead(LDR_PIN); // Reads the value from the pin in a 0-4095 resolution corresponding to a linear 0-3.3V        
+   voltage_measure = analogRead(LDR_PIN);  // Reads the value from the pin in a 0-4095 resolution corresponding to a linear 0-3.3V        
  
-   ilumination = ((long)V*DARKNESS_RES*10)/((long)BRIGHTNESS_RES*CALIBRARION_RES*(4096-V));  // Use if LDR between 33 & Vcc (like in the image)  
+   lux_measure = voltage_measure*DARKNESS_RES*10/(BRIGHTNESS_RES*CALIBRARION_RES*(pow(2.0, ANALOG_BIT_RESOLUTION)-voltage_measure));  // Use with LDR & Vcc 
    
-   Serial.println(ilum);   
+   Serial.println("Measure: " + String(lux_measure) + " lux");   
    
-   delay(1000);
+   delay(1000);  // Check the button every 1000 miliseconds
 }
 ```
 
