@@ -19,13 +19,13 @@ int ilumination;
  
 void setup(){
    Serial.begin(9600);
-   analogReadResolution(12);  // Sets the reading resolution value to 12 bits (0-4095)
+   analogReadResolution(10);  // Sets the reading resolution value to 12 bits (0-4095)
 }
  
 void loop(){
    voltage = analogRead(LDR_PIN); // Reads the value from the pin in a 0-4095 resolution corresponding to a linear 0-3.3V        
  
-   ilumination = ((long)V*DARKNESS_RES*10)/((long)BRIGHTNESS_RES*CALIBRARION_RES*(4096-V));  // Use if LDR between 33 & Vcc (like in the image)  
+   ilumination = ((long)V*DARKNESS_RES*10)/((long)BRIGHTNESS_RES*CALIBRARION_RES*(1024-V));  // Use if LDR between 33 & Vcc (like in the image)  
    
    Serial.println(ilum);   
    
