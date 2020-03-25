@@ -27,6 +27,6 @@ int getDistance() {
 }
 
 void loop() {
-  getDistance();// put your main code here, to run repeatedly:
+  getDistance();
   delay(1000);
 }
