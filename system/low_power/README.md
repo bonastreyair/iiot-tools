@@ -2,6 +2,8 @@
 ## Low Power
 This code gives a simple example to set deep sleep mode and enable a timer to start the ESP32.
 
+[[Go back]](/system)
+
 ### Hardware
 * ESP32
 

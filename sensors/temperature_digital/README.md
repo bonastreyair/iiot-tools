@@ -2,6 +2,8 @@
 ## Temperature (Digital)
 Using the DHT11 or the DHT22 sensors we can measure the air temperature.
 
+[[Go back]](/sensors)
+
 ### Hardware
 * ESP32
 * [DHT11](docs/datasheet_dht11.pdf) - [DFRobot Source](https://image.dfrobot.com/image/data/KIT0003/DHT11%20datasheet.pdf)

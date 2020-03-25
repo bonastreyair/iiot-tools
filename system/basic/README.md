@@ -1,5 +1,5 @@
-# Outputs
-## LED Light
+# System
+## Basic
 This text should explain what does this example do.
 
-[[Go back]](/outputs)
+[[Go back]](/system)

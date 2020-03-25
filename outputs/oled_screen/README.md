@@ -2,6 +2,8 @@
 ## OLED Screen
 Enables sending text to a standard oled screen via I2C.
 
+[[Go back]](/outputs)
+
 ### Hardware
 * ESP32
 * OLED Screen

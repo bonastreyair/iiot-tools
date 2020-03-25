@@ -1,7 +1,8 @@
 # Sensors
 ## Humidity (Digital)
-
 Using the DHT11 or the DHT22 sensors we can measure the air relative humidity.
+
+[[Go back]](/sensors)
 
 ### Hardware
 * ESP32

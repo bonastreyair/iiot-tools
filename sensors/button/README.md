@@ -2,6 +2,8 @@
 ## Button
 Using the button to control states.
 
+[[Go back]](/sensors)
+
 ### Hardware
 * ESP32
 * [Button](docs/datasheet_button.pdf) - [4donline Source](https://4donline.ihs.com/images/VipMasterIC/IC/OMRN/OMRN-S-A0001309768/OMRN-S-A0001309768-1.pdf?hkey=52A5661711E402568146F3353EA87419)

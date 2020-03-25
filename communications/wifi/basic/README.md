@@ -1,6 +1,8 @@
 # Communications
 ## Wifi - Basic
 Code to scan the surrounding networks and connect with one.
+
+[[Go back]](/communications)
 	
 ### Code
 ```cpp

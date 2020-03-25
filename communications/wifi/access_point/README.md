@@ -1,6 +1,8 @@
 # Communications
 ## Wifi - Access Point
 Code to enable and ESP32 to create its own WiFi network (Access Point - AP) and act as a hub (like WiFi router) for one or more stations. The maximum number of stations that can connect to it is limited to five.
+
+[[Go back]](/communications)
 	
 ### Code
 ```cpp

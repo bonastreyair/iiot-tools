@@ -2,6 +2,8 @@
 ## Fotoresistor
 Using the foto-reisitor to measure luminosity.
 
+[[Go back]](/sensors)
+
 ### Hardware
 * ESP32
 * [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [KTH Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)

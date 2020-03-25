@@ -2,6 +2,8 @@
 ## Ultrasounds
 Using the ultrasounds sensor we can measure the distance to any object.
 
+[[Go back]](/sensors)
+
 ### Hardware
 * ESP32
 * [Ultrasounds](docs/datasheet_ultrasounds.pdf) - [ELECFreaks](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)

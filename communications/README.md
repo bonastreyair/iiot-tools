@@ -1,18 +1,11 @@
 # Communications
 ## Wifi
-This text should explain what does this code do.
-
-### Basic
-Code to scan the surrounding networks and connect with one.
-* [Code Example](wifi/basic)
-
-### Acces Point
-Code to enable and ESP32 to create its own WiFi network (Access Point - AP) and act as a hub (like WiFi router) for one or more stations. The maximum number of stations that can connect to it is limited to five.
-* [Code Example](wifi/access_point)
-
-### HTTP Server
-Code to create a HTTP server in your network enabling GET and PUT methods.
-* [Code Example](wifi/http_server)
+Some examples regarding wifi interactions.
+|   		                     |Description   				   	   	            | Code   	                                   | Validation       |
+|--------------------------------|:-------------------------------------------------|:--------------------------------------------:|:----------------:|
+|[Basic](wifi/basic)			 |Scan the surrounding networks and connect with one|[:white_check_mark:](wifi/basic/basic.ino)    |:white_check_mark:|
+|[Acces Point](wifi/access_point)|How to create an AP?                    |[:white_check_mark:](wifi/access_point/access_point.ino)|:white_check_mark:| 
+|[HTTP Server](wifi/http_server) |How to create a simple HTTP Webserver?    |[:white_check_mark:](wifi/http_server/http_server.ino)|:white_check_mark:| 
 
 ## MQTT
 This text should explain what does this code do.

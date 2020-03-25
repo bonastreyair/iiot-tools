@@ -47,6 +47,6 @@ Each of the referenced examples will consist of a simple `code` in Arduino IDE f
 * Node-RED 1.0.4 - [Getting started](https://nodered.org/docs/getting-started/)
 
 ### Mantained by
-[@bonastreyair](https://github.com/bonastreyair)
-[@Ferrancf5](https://github.com/Ferrancf5)
-[@Eugenill](https://github.com/Eugenill)
+* [@bonastreyair](https://github.com/bonastreyair)
+* [@Ferrancf5](https://github.com/Ferrancf5)
+* [@Eugenill](https://github.com/Eugenill)
