@@ -20,9 +20,9 @@ int getDistance() {
   duration = pulseIn(ECHO_PIN, HIGH); // Waits for the ECHO_PIN to go from LOW to HIGH, 
                                       //starts timing, then waits for the pin to go LOW and stops timing (in microseconds).
   distance = duration * 0,034/2; //Calculation of the distance can be found in docs/distance_calculation.png
-  Serial.println("Distance to the object: ");
+  Serial.print("Distance to the object: ");
   Serial.print(distance);
-  Serial.print("cm");
+  Serial.println("cm");
   
 }
 
