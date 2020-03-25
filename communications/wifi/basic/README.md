@@ -9,18 +9,19 @@ Code to scan the surrounding networks and connect with one.
 #include <WiFi.h>  // Includes the WiFi library
 
 /* Put your SSID and Password */
-const char *WIFI_SSID = "YOUR_SSID_NAME";  // Enter SSID here
-const char *PASSWORD = "YOUR_WIFI_PASSWORD";  // Enter Password here
+const char *WIFI_SSID = "YOUR_SSID_NAME";
+const char *PASSWORD = "YOUR_WIFI_PASSWORD";
 
-void setup() {
-  Serial.begin(9600);
-  scanNetworks();
+void setup(){
+  Serial.begin(9600);  // Starts the serial communication
+
+  scanNetworks();  // Check nearby networks 
   connectToNetwork();  // Connect the configured network 
   Serial.print("Device IP: ");  // After being connected to a network, our ESP32 should have a IP
   Serial.println(WiFi.localIP());
 }
 
-void loop() {
+void loop(){
   if (WiFi.status() != WL_CONNECTED) {  // If Wifi disconnected, it tries to reconnect
     Serial.print("Wifi has been disconnected. Trying to reconnect...");
     connectToNetwork();  // Connect the configured network 
@@ -29,7 +30,7 @@ void loop() {
 }
 
 /* Additional functions */
-void scanNetworks() {
+void scanNetworks(){
   int numberOfNetworks = WiFi.scanNetworks();
   Serial.println("Number of networks found: " + String(numberOfNetworks));
   for (int i = 0; i < numberOfNetworks; i++) {
@@ -37,7 +38,7 @@ void scanNetworks() {
   }
 }
 
-void connectToNetwork() {
+void connectToNetwork(){
   WiFi.begin(WIFI_SSID, PASSWORD);
   Serial.print("Connecting with " + String(WIFI_SSID)); // Print the network which you want to connect  
   while (WiFi.status() != WL_CONNECTED) {  // Connecting effect

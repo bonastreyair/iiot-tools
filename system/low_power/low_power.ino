@@ -3,8 +3,7 @@
 RTC_DATA_ATTR int bootCount = 0;  // Data that will be stored during deep sleep mode
 
 void setup(){
-  Serial.begin(9600);
-  Serial.println("");
+  Serial.begin(9600);  // Starts the serial communication
 
   print_wakeup_reason();  // Print the wakeup reason for ESP32
 
@@ -32,7 +31,8 @@ void print_wakeup_reason(){
   esp_sleep_wakeup_cause_t wakeup_reason;
 
   wakeup_reason = esp_sleep_get_wakeup_cause();
-
+  
+  Serial.println("");  // Add a new line to better show the information
   switch(wakeup_reason){
     case ESP_SLEEP_WAKEUP_UNDEFINED:
       Serial.println("Reset was not caused by an exit from deep sleep");

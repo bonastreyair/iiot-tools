@@ -2,13 +2,13 @@
 
 int buttonState = 0;  // Variable for reading the pushbutton status
 
-void setup() {
-  Serial.begin(9600);
+void setup(){
+  Serial.begin(9600);  // Starts the serial communication
 
   pinMode(BUTTON_PIN, INPUT);  // Initialize the button pin as an input
 }
 
-void loop() {
+void loop(){
   buttonState = digitalRead(BUTTON_PIN);  // Read the state of the button value
   
   // Show the state of button on serial monitor

@@ -2,13 +2,13 @@
 #include <WebServer.h>  // Includes WebServer library
 
 /* Put your SSID and Password */
-const char *WIFI_SSID = "YOUR_SSID_NAME";  // Enter SSID here
-const char *PASSWORD = "YOUR_WIFI_PASSWORD";  // Enter Password here
+const char *WIFI_SSID = "YOUR_SSID_NAME";
+const char *PASSWORD = "YOUR_WIFI_PASSWORD";
 
 WebServer server(80);  // Creates server on standard port 80
 
-void setup() {
-  Serial.begin(9600);
+void setup(){
+  Serial.begin(9600); // Starts the serial communication
 
   connectToNetwork();  // Connect the configured network 
   Serial.print("Device IP: ");  // After being connected to a network, our ESP32 should have a IP
@@ -23,7 +23,7 @@ void setup() {
   Serial.println("HTTP Server has started");
 }
 
-void loop() {
+void loop(){
   if (WiFi.status() != WL_CONNECTED) {  // If Wifi disconnected, it tries to reconnect
     Serial.print("Wifi has been disconnected. Trying to reconnect...");
     connectToNetwork();  // Connect the configured network 
@@ -32,7 +32,7 @@ void loop() {
 }
 
 /* Additional functions */
-void connectToNetwork() {
+void connectToNetwork(){
   WiFi.begin(WIFI_SSID, PASSWORD);
   Serial.print("Connecting with " + String(WIFI_SSID)); // Print the network which you want to connect  
   
@@ -43,12 +43,12 @@ void connectToNetwork() {
   Serial.println("connected!");
 }
 
-void handle_OnConnect() {
+void handle_OnConnect(){
   server.send(200, "text/html", "Main page. Try to go to /hello endpoint"); 
   print_request_info();
 }
 
-void handle_Hello() {
+void handle_Hello(){
   server.send(200, "text/html", "Hello-world!"); 
   print_request_info();
 }

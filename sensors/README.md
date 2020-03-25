@@ -1,12 +1,14 @@
 # Sensors
 ## Button
-This text should explain what does this example do.
+Using the button to control states.
+* [Code Example](/button)
 
 ## Electricity Current
 This text should explain what does this example do.
 
 ## Foto Resistor
-This text should explain what does this example do.
+Using the foto-reisitor to measure luminosity.
+* [Code Example](/foto-resistor)
 
 ## GPS
 This text should explain what does this example do.
@@ -23,4 +25,5 @@ Using the DHT11 or DHT22 we can measure the air temperature using the following 
 This text should explain what does this example do.
 
 ## Ultrasounds
-This text should explain what does this example do.
+Using the ultrasounds sensor we can measure the distance to any object.
+* [Code Example](/ultrasounds)
