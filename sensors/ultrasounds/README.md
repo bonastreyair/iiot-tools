@@ -4,37 +4,50 @@ Using the foto-reisitor to measure luminosity.
 
 ### Hardware
 * ESP32
-* [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [KTH Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)
+* [Ultrasounds](docs/datasheet_ultrasounds.pdf) - [ELECFreaks](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
 
 ### Code
-* [fotoresistor.ino](fotoresistor.ino)
+* [ultrasounds.ino](ultrasounds.ino)
 ```cpp
-#define DARKNESS_RES  1000  // Resistance in darkness in KΩ
-#define BRIGHTNESS_RES  15  // Resistance in brightness (10 Lux) in KΩ
-#define CALIBRARION_RES 10  // Calibration resistance in KΩ
-#define LDR_PIN         33  // LDR Pin
- 
-int voltage;
-int ilumination;
- 
-void setup(){
-   Serial.begin(9600);
-   analogReadResolution(12);  // Sets the reading resolution value to 12 bits (0-4095)
+#define ECHO_PIN  34  //Analog input that receives the echo signal
+#define TRIG_PIN  33 //Digital output that sends the trigger signal
+
+unsigned long duration;
+unsigned int distance;
+
+void setup() {
+  pinMode(ECHO_PIN, INPUT); // Sets the ECHO_PIN as an Input
+  pinMode(TRIG_PIN, OUTPUT); // Sets the TRIG_PIN as an Output
+  Serial.begin(9600); // Starts the serial communication
+
 }
- 
-void loop(){
-   voltage = analogRead(LDR_PIN); // Reads the value from the pin in a 0-4095 resolution corresponding to a linear 0-3.3V        
- 
-   ilumination = ((long)V*DARKNESS_RES*10)/((long)BRIGHTNESS_RES*CALIBRARION_RES*(4096-V));  // Use if LDR between 33 & Vcc (like in the image)  
-   
-   Serial.println(ilum);   
-   
-   delay(1000);
+
+int getDistance() {
+  digitalWrite(TRIG_PIN, LOW); // Clears the TRIG_PIN
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);// Sets the TRIG_PIN on HIGH state for 10 micro seconds
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+  duration = pulseIn(ECHO_PIN, HIGH); // Waits for the ECHO_PIN to go from LOW to HIGH, 
+                                      //starts timing, then waits for the pin to go LOW and stops timing (in microseconds).
+  distance = duration * 0,034/2; //Calculation of the distance can be found in docs/distance_calculation.png
+  Serial.println("Distance to the object: ");
+  Serial.print(distance);
+  Serial.print("cm");
+  
+}
+
+void loop() {
+  getDistance();
+  delay(1000);
 }
 ```
 
 ### Libraries
 * No needed libraries
 
-### Connection
-![Connection image](docs/fotoresistor.png)
+### Distance Calculation
+![Calculation image](docs/distance_calculation.png)
+
+### Connection 
+![Calculation image](docs/connection.png)
