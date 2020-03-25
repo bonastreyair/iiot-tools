@@ -50,4 +50,4 @@ void loop() {
 ![Calculation image](docs/distance_calculation.png)
 
 ### Connection 
-![Calculation image](docs/distance_calculation.png)
+![Calculation image](docs/connection.png)
