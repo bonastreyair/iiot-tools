@@ -1,6 +1,6 @@
 # Sensor
-## Fotoresistor
-Using the foto-reisitor to measure luminosity.
+## Ultrasounds
+Using the ultrasounds sensor to measure distance to objects.
 
 ### Hardware
 * ESP32
