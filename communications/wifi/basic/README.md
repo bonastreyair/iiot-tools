@@ -3,8 +3,6 @@
 Code to scan the surrounding networks and connect with one.
 	
 ### Code
-* [basic.ino](basic.ino)
-
 ```cpp
 #include <WiFi.h>  // Includes the WiFi library
 
@@ -48,6 +46,7 @@ void connectToNetwork(){
   Serial.println("connected!");
 }
 ```
+[[source]](basic.ino)
 
 ### Libraries
 * Wifi library by [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management

@@ -8,7 +8,6 @@ For this reason we have writing a [complex.ino](complex/complex.ino) with a libr
 * [GPS](docs/gep-neo-6.pdf) - [terraelectronica Source](https://www.terraelectronica.ru/pdf/show?pdf_file=%2Fz%2FDatasheet%2FU%2FUART+GPS+NEO-6M+User+Manual.pdf)
 
 ### Simple Code (without library)
-* [simple.ino](simple/simple.ino)
 ```cpp
 #include <SoftwareSerial.h>
  
@@ -36,9 +35,9 @@ void loop()
   }
 }
 ```
+[[source]](simple/simple.ino)
 
 ### Complex Code (with library)
-* [complex.ino](complex/complex.ino)
 ```cpp
 #include <SoftwareSerial.h>
 #include <TinyGPS.h>
@@ -97,6 +96,8 @@ void loop()
    Serial.println(failed);
 }
 ```
+[[source]](complex/complex.ino)
+
 ### Libraries
 * SoftwareSerial library by Peter Lerup and Dirk Kaar [GitHub](https://github.com/plerup/espsoftwareserial/) - Installed from GitHub
 ![SoftwareSerial_library](docs/SoftwareSerial_library.png)

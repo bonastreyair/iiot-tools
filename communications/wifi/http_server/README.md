@@ -3,8 +3,6 @@
 Code to create a HTTP server in your network enabling GET and PUT methods.
   
 ### Code
-* [http_server.ino](http_server.ino)
-
 ```cpp
 #include <WiFi.h> // Includes the WiFi library
 #include <WebServer.h>  // Includes WebServer library
@@ -81,6 +79,7 @@ void print_request_info(){
   }
 }
 ```
+[[source]](http_server.ino)
 
 ### Libraries
 * Wifi library by [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management

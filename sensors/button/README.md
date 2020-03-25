@@ -7,7 +7,6 @@ Using the button to control states.
 * [Button](docs/datasheet_button.pdf) - [4donline Source](https://4donline.ihs.com/images/VipMasterIC/IC/OMRN/OMRN-S-A0001309768/OMRN-S-A0001309768-1.pdf?hkey=52A5661711E402568146F3353EA87419)
 
 ### Code
-* [button.ino](button.ino)
 ```cpp
 #define BUTTON_PIN 2  // The number of the pushbutton pin (2-> digital pin)
 
@@ -32,6 +31,7 @@ void loop(){
   delay(1000);  // Check the button every 1000 miliseconds
 }
 ```
+[[source]](button.ino)
 
 ### Libraries
 * No extra libraries needed

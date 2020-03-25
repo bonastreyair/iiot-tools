@@ -3,8 +3,6 @@
 Code to enable and ESP32 to create its own WiFi network (Access Point - AP) and act as a hub (like WiFi router) for one or more stations. The maximum number of stations that can connect to it is limited to five.
 	
 ### Code
-* [access_point.ino](access_point.ino)
-
 ```cpp
 #include <WiFi.h> // Includes the WiFi library
 
@@ -29,6 +27,7 @@ void setup(){
 void loop(){
 }
 ```
+[[source]](access_point.ino)
 
 ### Libraries
 * Wifi library by [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management

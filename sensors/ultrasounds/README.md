@@ -7,8 +7,6 @@ Using the ultrasounds sensor we can measure the distance to any object.
 * [Ultrasounds](docs/datasheet_ultrasounds.pdf) - [ELECFreaks](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
 
 ### Code
-* [ultrasounds.ino](ultrasounds.ino)
-
 ```cpp
 #define ECHO_PIN  34  // Analog input that receives the echo signal
 #define TRIG_PIN  33  // Digital output that sends the trigger signal
@@ -42,6 +40,7 @@ float getDistance(){
   return duration * 0,034/2;  // Returns the distance in cm
 }
 ```
+[[source]](ultrasounds.ino)
 
 ### Libraries
 * No needed libraries

@@ -7,7 +7,6 @@ Using the foto-reisitor to measure luminosity.
 * [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [KTH Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)
 
 ### Code
-* [foto-resistor.ino](foto-resistor.ino)
 ```cpp
 #define DARKNESS_RES    1000  // Resistance in darkness in KΩ
 #define BRIGHTNESS_RES  15    // Resistance in brightness (10 Lux) in KΩ
@@ -34,6 +33,7 @@ void loop(){
    delay(1000);  // Check the light every 1000 miliseconds
 }
 ```
+[[source]](foto-resistor.ino)
 
 ### Libraries
 * No needed libraries

@@ -7,8 +7,6 @@ Enables sending text to a standard oled screen via I2C.
 * OLED Screen
 
 ### Code
-* [oled_screen.ino](oled_screen.ino)
-
 ```cpp
 #include <Wire.h>    // Needed library for I2C communications
 #include "SSD1306.h" // Needed library for interacting with the oled screen
@@ -52,6 +50,7 @@ void loop(){
   delay(1000);  // Freezes the loop for 1000 miliseconds
 }
 ```
+[[source]](oled_screen.ino)
 
 ### Libraries
 * Wire

@@ -9,7 +9,6 @@ Using the DHT11 or the DHT22 sensors we can measure the air relative humidity.
 * [DHT22](docs/datasheet_dht22.pdf) - [SparkFun Source](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
 
 ### Code
-* [humidity_digital.ino](humidity_digital.ino)
 ```cpp
 #include "DHT.h"  // Include DHT library
 
@@ -35,6 +34,7 @@ void loop(){
   delay(1000);  // Freezes the loop for 1000 milliseconds
 }
 ```
+[[source]](humidity_digital.ino)
 
 ### Libraries
 * DHT sensor library by [Adafruit](https://www.adafruit.com/) - Installed from the Arduino IDE Library Management
