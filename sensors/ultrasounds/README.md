@@ -4,7 +4,7 @@ Using the foto-reisitor to measure luminosity.
 
 ### Hardware
 * ESP32
-* [Ultrasounds](docs/datasheet_fotoresistor.pdf) - [ELECFreaks](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
+* [Ultrasounds](docs/datasheet_ultrasounds.pdf) - [ELECFreaks](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
 
 ### Code
 * [ultrasounds.ino](ultrasounds.ino)
@@ -47,4 +47,7 @@ void loop() {
 * No needed libraries
 
 ### Distance Calculation
+![Calculation image](docs/distance_calculation.png)
+
+### Connection 
 ![Calculation image](docs/distance_calculation.png)
