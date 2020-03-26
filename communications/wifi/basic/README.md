@@ -4,7 +4,7 @@ Code to scan the surrounding networks and connect with one.
 
 [[Go back]](/communications)
 	
-### Code
+### [Code](basic.ino)
 ```cpp
 #include <WiFi.h>  // Includes the WiFi library
 
@@ -40,7 +40,7 @@ void scanNetworks(){
 
 void connectToNetwork(){
   WiFi.begin(WIFI_SSID, PASSWORD);
-  Serial.print("Connecting with " + String(WIFI_SSID)); // Print the network which you want to connect  
+  Serial.print("Connecting with " + String(WIFI_SSID));  // Print the network which you want to connect  
   while (WiFi.status() != WL_CONNECTED) {  // Connecting effect
     delay(500);
     Serial.print("..");
@@ -48,8 +48,7 @@ void connectToNetwork(){
   Serial.println("connected!");
 }
 ```
-[[source]](basic.ino)
 
 ### Libraries
-* Wifi library by [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management
+* _Wifi_ by [Arduino](https://www.arduino.cc/en/Reference/WiFi) - Installed from the Arduino IDE Library Management
 ![WiFi_library](../WiFi_library.png)

@@ -9,7 +9,7 @@ Using the DHT11 or the DHT22 sensors we can measure the air temperature.
 * [DHT11](docs/datasheet_dht11.pdf) - [DFRobot Source](https://image.dfrobot.com/image/data/KIT0003/DHT11%20datasheet.pdf)
 * [DHT22](docs/datasheet_dht22.pdf) - [SparkFun Source](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
 
-### Code
+### [Code](temperature_digital.ino)
 ```cpp
 #include "DHT.h"  // Include DHT library
 
@@ -35,8 +35,7 @@ void loop(){
   delay(1000);  // Freezes the loop for 1000 milliseconds
 }
 ```
-[[source]](temperature_digital.ino)
 
 ### Libraries
-* DHT sensor library by [Adafruit](https://www.adafruit.com/) - Installed from the Arduino IDE Library Management
+* _DHT sensor library_ by Adafruit [GitHub](https://github.com/adafruit/DHT-sensor-library) - Installed from the Arduino IDE Library Management
 ![dht_library](docs/dht_installation.png)

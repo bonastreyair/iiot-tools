@@ -1,5 +1,5 @@
-#include <Wire.h>    // Needed library for I2C communications
-#include "SSD1306.h" // Needed library for interacting with the oled screen
+#include <Wire.h>    // Library for I2C communications
+#include "SSD1306.h" // Library from U8g2 that enables interaction with the oled screen
 
 #define OLED_SDA       4
 #define OLED_SCL       15

@@ -4,9 +4,9 @@ Code to enable and ESP32 to create its own WiFi network (Access Point - AP) and 
 
 [[Go back]](/communications)
 	
-### Code
+### [Code](access_point.ino)
 ```cpp
-#include <WiFi.h> // Includes the WiFi library
+#include <WiFi.h>  // Includes the WiFi library
 
 /* Put your desired SSID and Password */
 const char *WIFI_SSID = "YOUR_SSID_NAME";
@@ -29,8 +29,7 @@ void setup(){
 void loop(){
 }
 ```
-[[source]](access_point.ino)
 
 ### Libraries
-* Wifi library by [Arduino](https://www.arduino.cc/) - Installed from the Arduino IDE Library Management
+* _Wifi_ by [Arduino](https://www.arduino.cc/en/Reference/WiFi) - Installed from the Arduino IDE Library Management
 ![WiFi_library](../WiFi_library.png)

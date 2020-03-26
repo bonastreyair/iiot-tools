@@ -7,7 +7,7 @@ This code gives a simple example to set deep sleep mode and enable a timer to st
 ### Hardware
 * ESP32
 
-### Code
+### [Code](low_power.ino)
 ```cpp
 #define SLEEP_TIME  5  // Time ESP32 will go into deep sleep (in seconds)
 
@@ -73,7 +73,6 @@ void print_wakeup_reason(){
   }
 }
 ```
-[[source]](low_power.ino)
 
 ### Libraries
-* Standard ESP32 Library - [Sleep Modes](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/sleep_modes.html)
+* _Standard ESP32 Library_ - Sleep Modes [Espressif](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/sleep_modes.html)  - Preinstalled with ESP32 Board in Arduino IDE

@@ -1,4 +1,4 @@
-#include <WiFi.h>. // Includes the WiFi library
+#include <WiFi.h>  // Includes the WiFi library
 #include <WebServer.h>  // Includes WebServer library
 
 /* Put your SSID and Password */

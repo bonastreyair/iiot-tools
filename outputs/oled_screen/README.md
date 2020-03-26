@@ -8,10 +8,10 @@ Enables sending text to a standard oled screen via I2C.
 * ESP32
 * OLED Screen
 
-### Code
+### [Code](oled_screen.ino)
 ```cpp
-#include <Wire.h>    // Needed library for I2C communications
-#include "SSD1306.h" // Needed library for interacting with the oled screen
+#include <Wire.h>  // Library for I2C communications
+#include "SSD1306.h" // Library from U8g2 that enables interaction with the oled screen
 
 #define OLED_SDA       4
 #define OLED_SCL       15
@@ -52,8 +52,8 @@ void loop(){
   delay(1000);  // Freezes the loop for 1000 miliseconds
 }
 ```
-[[source]](oled_screen.ino)
 
 ### Libraries
-* Wire
-* SSD1306
+* _Wire_ by [Arduino](https://www.arduino.cc/en/reference/wire) - Preinstalled with Arduino IDE
+* _U8g2_ by oliver [Github](https://github.com/olikraus/u8g2) - Installed from the Arduino IDE Library Management
+![u8g2](docs/u8g2_installation.png)
