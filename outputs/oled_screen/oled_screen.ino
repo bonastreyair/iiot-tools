@@ -1,6 +1,7 @@
 #include <Wire.h>    // Library for I2C communications
 #include "SSD1306.h" // Library from U8g2 that enables interaction with the oled screen
 
+
 #define OLED_SDA       4
 #define OLED_SCL       15
 #define OLED_RST       16
@@ -29,6 +30,7 @@ void setup(){
 }
 
 void loop(){
+  /*
   up_time++;  // Adds +1 to variable "up_time"
   Serial.println("Uptime: " + String(up_time) + "s");
 
@@ -38,4 +40,5 @@ void loop(){
   display.display();  // Displays the configuration
 
   delay(1000);  // Freezes the loop for 1000 miliseconds
+  */
 }
