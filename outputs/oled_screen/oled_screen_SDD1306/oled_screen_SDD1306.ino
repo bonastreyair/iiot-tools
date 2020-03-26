@@ -23,22 +23,19 @@ void setup(){
   display.init();
   display.flipScreenVertically();
 
-  // Show some static text
-  display.setFont(ArialMT_Plain_16);  // Sets font and size
-  display.drawString(0, 0, "Hello World!");  // Sets text on position (0,0)
-  display.display();  // Displays the configuration on the screen
 }
 
 void loop(){
-  /*
   up_time++;  // Adds +1 to variable "up_time"
   Serial.println("Uptime: " + String(up_time) + "s");
 
   // Show some changing text
   display.setFont(ArialMT_Plain_16);  // Sets font and size
+  display.drawString(0, 0, "Hello World!");  // Sets text on position (0,0)
   display.drawString(0, 24, "Uptime: " + String(up_time) + "s");  // Sets text on position (0,24)
   display.display();  // Displays the configuration
+  display.clear();
 
   delay(1000);  // Freezes the loop for 1000 miliseconds
-  */
+  
 }

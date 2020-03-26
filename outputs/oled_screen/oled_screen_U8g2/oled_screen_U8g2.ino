@@ -51,15 +51,5 @@ void loop(){
     x=0;
   }
   y=0;
-  /*
-  up_time++;  // Adds +1 to variable "up_time"
-  Serial.println("Uptime: " + String(up_time) + "s");
 
-  // Show some changing text
-  display.clearBuffer();
-  display.drawStr(0, 24, "Uptime: " + String(up_time) + "s");  // Sets text on position (0,24)
-  display.sendBuffer();  // Displays the configuration
-
-  delay(1000);  // Freezes the loop for 1000 miliseconds
-*/
 }
