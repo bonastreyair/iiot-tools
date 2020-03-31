@@ -1,13 +1,3 @@
-# Sensors
-## Electricity Current
-
-[[Go back]](/sensors)
-
-### Hardware
-* ESP32
-
-### [PZEM004Tv30](PZEM004Tv30/[PZEM004Tv30.ino)
-```cpp
 #include <PZEM004Tv30.h>
 #include <SoftwareSerial.h>
 /* Use software serial for the PZEM
@@ -69,20 +59,3 @@ void loop() {
       
 }
    
-```
-
-### [SCT-013](SCT-013/SCT-013.ino) 
-```cpp
-
-```
-
-### Libraries
-* _SoftwareSerial_ by Peter Lerup and Dirk Kaar [GitHub](https://github.com/plerup/espsoftwareserial/) - Installed from GitHub
-![SoftwareSerial_library](docs/SoftwareSerial_library.png)
-* _PZEM-004T-V30_ by mandulaj [GitHub](https://github.com/mandulaj/PZEM-004T-v30) - Installed from GitHub
-![PZEM-004T-v30_library](PZEM004Tv30/PZEM-004T-v30.zip)
-* _PZEM-004T_ by olehs [GitHub](https://github.com/olehs/PZEM004T) - Installed from GitHub
-![PZEM-004T_library](PZEM004Tv30/PZEM-004T.zip)
-
-### Connection
-![Connection PZEM-004T](docs/PZEM-004T.png)
