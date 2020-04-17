@@ -23,10 +23,6 @@ void setup(){
   display.init();
   display.flipScreenVertically();
 
-  // Show some static text
-  display.setFont(ArialMT_Plain_16);  // Sets font and size
-  display.drawString(0, 0, "Hello World!");  // Sets text on position (0,0)
-  display.display();  // Displays the configuration on the screen
 }
 
 void loop(){
