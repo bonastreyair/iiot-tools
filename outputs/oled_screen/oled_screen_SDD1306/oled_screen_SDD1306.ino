@@ -1,6 +1,5 @@
-#include <Wire.h>    // Library for I2C communications
+#include <Wire.h>  // Library for I2C communications
 #include "SSD1306.h" // Library from U8g2 that enables interaction with the oled screen
-
 
 #define OLED_SDA       4
 #define OLED_SCL       15
@@ -23,6 +22,10 @@ void setup(){
   display.init();
   display.flipScreenVertically();
 
+  // Show some static text
+  display.setFont(ArialMT_Plain_16);  // Sets font and size
+  display.drawString(0, 0, "Hello World!");  // Sets text on position (0,0)
+  display.display();  // Displays the configuration on the screen
 }
 
 void loop(){
@@ -36,6 +39,5 @@ void loop(){
   display.display();  // Displays the configuration
   display.clear();
 
-  delay(1000);  // Freezes the loop for 1000 miliseconds
-  
+  delay(1000);  // Freezes the loop for 1000 miliseconds 
 }
