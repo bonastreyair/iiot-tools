@@ -8,10 +8,14 @@ Some examples regarding wifi interactions.
 |[HTTP Server](wifi/http_server) |How to create a simple HTTP Webserver?    |[:white_check_mark:](wifi/http_server/http_server.ino)|:white_check_mark:| 
 
 ## MQTT
-This text should explain what does this code do.
+|   		                     |Description   				   	   	            | Code   	             | Validation       |
+|--------------------------------|:-------------------------------------------------|:----------------------:|:----------------:|
+|[Publish](wifi/basic)			 |How can you publish new data in JSON? |[:x:](mqtt/publish/publish.ino)     |:x:|
+|[Subscribe](wifi/access_point)  |How can you subscribe for commands?   |[:x:](mqtt/subscribe/subscribe.ino) |:x:| 
+
 
 ## Websockets
-This text should explain what does this code do.
+Not ready yet.
 
 ## Bluetooth
-This text should explain what does this code do.
+Not ready yet.
