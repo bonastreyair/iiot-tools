@@ -1,10 +1,11 @@
 #include <Wire.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
+#include <ArduinoJson.h>
 
 // Replace the next variables with your Wi-Fi SSID/Password
-const char* WIFI_SSID = "YOUR_SSID_NAME";
-const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
+const char* WIFI_SSID = "WIFI_SSID";
+const char* WIFI_PASSWORD = "WIFI_PASSWORD";
 char macAddress[18];
 
 // Add MQTT Broker settings
@@ -17,59 +18,63 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 // Topic Variables
-String cmdTopicStr;
+String jsonTopicStr;
 String newTopicStr;
+
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
   Serial.println("");
 
   client.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
-  client.setCallback(callback);  // Prepare what to do when a message is recieved
+  //client.setCallback(callback);  // Prepare what to do when a message is recieved
 
   connectToWiFiNetwork();  // Connects to the configured network
   connectToMqttBroker();  // Connects to the configured mqtt broker
-  setMqttSubscriptions();  // Subscribes to configured topics
+  
 }
 
 void loop() {
   checkConnections();
+  publishMqttData();  // Publishes to counter topic
+  publishMqttJson();  // Subscribes to json topic
+  
+  delay(7000);
 }
 
 /* Additional functions */
-void setMqttSubscriptions() {
-  cmdTopicStr = String(macAddress) + String("/cmd");
-  const char* cmdTopic = cmdTopicStr.c_str();
-  client.subscribe(cmdTopic, QoS);
-  Serial.println("Client MQTT subscribed to topic: " + cmdTopicStr + " (QoS:" + String(QoS) + ")");
-
+void publishMqttData(){
+  String Data = "Hello there! \n This is a message from my ESP32 with MacAdress:" + String(macAddress)+"\n";
   newTopicStr = String(macAddress) + String("/test");
   const char* newTopic = newTopicStr.c_str();
-  client.subscribe(newTopic, QoS);
-  Serial.println("Client MQTT subscribed to topic: " + newTopicStr + " (QoS:" + String(QoS) + ")");
+  const char* PubData = Data.c_str();
+  client.publish(newTopic, PubData);
+  Serial.println("Client MQTT published to topic: " + String(newTopic) + " (QoS:" + String(QoS) + ")");
 }
 
-void callback(char* topic, byte* message, unsigned int length) {
-  String msg = unwrap(message, length);
-  Serial.println(String(topic) + ": " + msg);
+void publishMqttJson(){
+  char buffer[512];  //create the buffer where we will print the JSON document to publish through MQTT
+  
+  //Create JSON document
+  StaticJsonDocument<300> JSONdoc; // a little more than 300 bytes in the stack
+  JSONdoc["device"] = "ESP32"; //add names and values to the JSON document
+  JSONdoc["sensorType"] = "Temperature";
+  JsonArray values = JSONdoc["values"].to<JsonArray>(); //Or we can add an array to the string "values"
+  
+  values.add(27);  //Inside the array we can add new values to "values" 
+  values.add(29); 
+  
+  serializeJson(JSONdoc, buffer); //serialize the JSON document to a buffer in order to publish it
 
-  if (String(topic) == cmdTopicStr) {
-    // Do some command
-  } else if (String(topic) == newTopicStr) {
-    // Do some other stuff
-  } else {
-    Serial.println("[WARN] - '" + String(topic) + "' topic was correctly subscribed but not defined in the callback function");
-  }
+  jsonTopicStr = String(macAddress) + String("/json");
+  const char* jsonTopic = jsonTopicStr.c_str();
+  client.publish(jsonTopic, buffer);
+  Serial.println("Client MQTT published to topic: " + String(jsonTopic) + " (QoS:" + String(QoS) + ")");
 }
 
-String unwrap(byte* message, unsigned int length) {
-  String msg;
-  for (int i = 0; i < length; i++) {  // Unwraps the string message
-    msg += (char)message[i];
-  }
-  return msg;
+void createJSONdocument(){
+  
 }
-
 void connectToWiFiNetwork() {
   Serial.print("Connecting with Wi-Fi: " + String(WIFI_SSID));  // Print the network which you want to connect
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -101,6 +106,5 @@ void checkConnections() {
       connectToWiFiNetwork();  // Reconnect Wifi
     }
     connectToMqttBroker();  // Reconnect Server MQTT Broker
-    setMqttSubscriptions();  // Subscribes to configured topics
   }
 }
