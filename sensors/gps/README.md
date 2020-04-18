@@ -100,4 +100,4 @@ void loop(){
 ![TinyGPS_library](docs/TinyGPS_library.png)
 
 ### Connection
-![Connection image](docs/gps-neo-6.jpeg)
+![Connection gps image](docs/gps-neo-6.png)

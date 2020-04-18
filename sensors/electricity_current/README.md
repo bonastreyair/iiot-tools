@@ -113,13 +113,11 @@ float lectura_consum_sct013()
 ### Libraries
 * _SoftwareSerial_ by Peter Lerup and Dirk Kaar [GitHub](https://github.com/plerup/espsoftwareserial/) - Installed from GitHub
 ![SoftwareSerial_library](docs/SoftwareSerial_library.png)
-* _PZEM-004T-V30_ by mandulaj [GitHub](https://github.com/mandulaj/PZEM-004T-v30) - Installed from GitHub
-![PZEM-004T-v30_library](PZEM004Tv30/PZEM-004T-v30.zip)
-* _PZEM-004T_ by olehs [GitHub](https://github.com/olehs/PZEM004T) - Installed from GitHub
-![PZEM-004T_library](PZEM004Tv30/PZEM-004T.zip)
+* [_PZEM-004T-V30_] (PZEM004Tv30/PZEM-004T-v30.zip) by mandulaj [GitHub](https://github.com/mandulaj/PZEM-004T-v30) - Installed from GitHub
+* [_PZEM-004T_] (PZEM004Tv30/PZEM-004T.zip) by olehs [GitHub](https://github.com/olehs/PZEM004T) - Installed from GitHub
 
 ### Connection
-![Connection PZEM-004Tv30](docs/PZEM-004Tv30.jpeg)
-![Connection SCT-013-30](docs/SCT-013-30.jpeg)
+![Connection PZEM-004Tv30](docs/PZEM-004Tv30.jpg)
+![Connection SCT-013-30](docs/SCT-013-30.jpg)
 ![Connection internal LM358](docs/LM358.jfif)
 ![Connection external LM358](docs/LM358_OA.jpg)
