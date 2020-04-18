@@ -1,5 +1,5 @@
 # Sensors
-## Temperature (Analog)
+## Temperature 
 Using the TMP36, the DS18B20 or the DHT11/DHT22 sensors we can measure the air temperature.
 
 [[Go back]](/sensors)
@@ -12,7 +12,7 @@ Using the TMP36, the DS18B20 or the DHT11/DHT22 sensors we can measure the air t
 * [DHT22](docs/datasheet_dht22.pdf) - [SparkFun Source](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
 
 
-### [TMP36](TMP36/TMP36.ino)
+### [TMP36](TMP36/TMP36.ino) (Analog)
 ```cpp
 #define TMP_PIN 32  // Number pin where the sensor is connected to
 
@@ -38,7 +38,7 @@ float analogToCelcius(int reading) {
 
 ```
 
-### [DS18B20](DS18B20/DS18B20.ino)
+### [DS18B20](DS18B20/DS18B20.ino) (Digital)
 ```cpp
 #include <DallasTemperature.h>  // Includes the Dallas Temperature library
 #include <OneWire.h>  // Includes the One Wire library
@@ -67,7 +67,7 @@ void loop() {
 }
 ```
 
-### [DHT](DHT.ino)
+### [DHT](DHT.ino) (Digital)
 ```cpp
 #include "DHT.h"  // Include DHT library
 
