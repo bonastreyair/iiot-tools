@@ -70,3 +70,4 @@ void loop() {
 ![OneWire_library](docs/OneWire_library.png)
 
 ### Connection 
+![TMP36 connection](docs/TMP36_connection.png)
