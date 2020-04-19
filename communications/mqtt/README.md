@@ -71,7 +71,7 @@ To install this broker node in Node-Red:
   
   ![contrib-aedes](docs/MQTT9.png)
   
-  *the broker IP will be the IP of he device where the Node-Red is running
+  * the broker IP will be the IP of he device where the Node-Red is running
 
 ## Our implementation
 We will divide this functionality into: 
