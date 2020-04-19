@@ -21,8 +21,7 @@ PubSubClient client(espClient);
 String jsonTopicStr;
 String newTopicStr;
 
-//Initialize time
-int before = millis();
+int before = millis(); //Initialize time
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
@@ -35,8 +34,7 @@ void setup() {
 }
 
 void loop() {
-  //We check the connection every time
-  checkConnections();
+  checkConnections(); //We check the connection every time
   
   //But we publish information only every 5 seconds
   int now = millis();
