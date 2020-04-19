@@ -171,9 +171,9 @@ void publishJson() {
   
   In the code we use:
     - `WifiClient WifiClientName`: Creates a client that can connect to to a specified internet IP address and port. (We will use for the MQTT Broker connection)
-    - `WiFi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status.
-    - `WiFi.status()`: Return the connection status. 
-    - `WiFi.macAdress()`: Gets the MAC Address of your WiFi shield
+    - `Wifi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status.
+    - `Wifi.status()`: Return the connection status. 
+    - `Wifi.MacAdress()`: Gets the MAC Address of your WiFi shield
  
 * **PubSubClient** 
 
