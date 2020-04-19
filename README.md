@@ -46,14 +46,14 @@ Each of the referenced examples will consist of a simple `code` in Arduino IDE f
 |[Server](/communications/bluetooth/server) |How to build a bluetooth server? |[:x:](/communications/bluetooth/server/server.ino)|[:x:](/communications/bluetooth/README.md)|
 |[Client](/communications/bluetooth/client) |How to connect to a bluetooth as a client? |[:x:](/communications/bluetooth/client/client.ino)|[:x:](/communications/bluetooth/README.md)|
 
-### System
+### [System](/system)
 | | Description | Code | Docs |
 |-|:------------|:----:|:----:|
 |[Basic](/system/basic) |Some basic examples to understand how `C++` works using `Arduino IDE` |[:x:](/system/basic/basic.ino)|[:x:](/system/basic/README.md)|
 |[Low Power](/system/low_power) |Some basic examples to understand how ESP32 works in deep sleep mode |[:white_check_mark:](/system/low_power/low_power.ino)|[:white_check_mark:](/system/low_power/README.md)|
-|[Multi-Task](/system/multi-tasks) |Some basic examples how to use more than one simultaneous task |[:x:](/system/multi-tasks/multi-tasks.ino)|[:x:](/system/multi-tasks/README.md)|
+|[Multi Tasks](/system/multi-tasks) |Some basic examples how to use more than one simultaneous task |[:x:](/system/multi-tasks/multi-tasks.ino)|[:x:](/system/multi-tasks/README.md)|
 
-### Projects
+### [Projects](/projects)
 | | Description | Dependancies | Difficulty |
 |-|:------------|:------------:|:----------:|
 
