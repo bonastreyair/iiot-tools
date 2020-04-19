@@ -175,6 +175,7 @@ void publishJson() {
     - `Wifi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status.
     - `Wifi.status()`: Return the connection status. 
     - `Wifi.MacAdress()`: Gets the MAC Address of your WiFi shield
+    - `WiFi.localIP()`: Gets the WiFi shield's IP address
  
 * **PubSubClient** 
 
