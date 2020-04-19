@@ -21,25 +21,31 @@ PubSubClient client(espClient);
 String jsonTopicStr;
 String newTopicStr;
 
+//Initialize time
+int before = millis();
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
   Serial.println("");
 
   client.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
-  //client.setCallback(callback);  // Prepare what to do when a message is recieved
 
   connectToWiFiNetwork();  // Connects to the configured network
   connectToMqttBroker();  // Connects to the configured mqtt broker
-  
 }
 
 void loop() {
+  //We check the connection every time
   checkConnections();
-  publishMqttData();  // Publishes to counter topic
-  publishMqttJson();  // Subscribes to json topic
   
-  delay(7000);
+  //But we publish information only every 5 seconds
+  int now = millis();
+  if (now-before >= 5000){
+    publishMqttData();  // Publishes to counter topic
+    publishMqttJson();  // Subscribes to json topic
+    before = millis();
+  }
+
 }
 
 /* Additional functions */
@@ -72,9 +78,6 @@ void publishMqttJson(){
   Serial.println("Client MQTT published to topic: " + String(jsonTopic) + " (QoS:" + String(QoS) + ")");
 }
 
-void createJSONdocument(){
-  
-}
 void connectToWiFiNetwork() {
   Serial.print("Connecting with Wi-Fi: " + String(WIFI_SSID));  // Print the network which you want to connect
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
