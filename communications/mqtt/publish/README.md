@@ -170,7 +170,7 @@ void checkConnections() {
     - For more [info](https://www.arduino.cc/en/Reference/WiFi)
   
   In the code we use:
-    - WifiClient WifiClientName: Creates a client that can connect to to a specified internet IP address and port. (We will use for the MQTT Broker connection)
+    - `WifiClient WifiClientName`: Creates a client that can connect to to a specified internet IP address and port. (We will use for the MQTT Broker connection)
     - `Wifi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status.
     - `Wifi.status()`: Return the connection status. 
     - `Wifi.MacAdress()`: Gets the MAC Address of your WiFi shield
