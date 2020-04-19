@@ -103,6 +103,6 @@ void checkConnections() {
       connectToWiFiNetwork();  // Reconnect Wifi
     }
     connectToMqttBroker();  // Reconnect Server MQTT Broker
-    setMqttSubscriptions();  // Subscribes to configured topics
+    setSubscriptions();  // Subscribes to configured topics
   }
 }
