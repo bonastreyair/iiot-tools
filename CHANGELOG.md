@@ -1,7 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.1] - 2020-03-19
+## [0.2.0] - 2020-04-19
+### Added
+ * MQTT examples
+ 	* publishing
+ 	* subscribing
+ * WiFi examples
+ 	* Basic connection
+ 	* Acces Point
+ 	* HTTP Server
+ * Bluetooth examples
+ * 
+
+### Changed
+ - Removed `websockets` from the main list
+
+## [0.1.0] - 2020-03-19
 ### Added
  * CHANGELOG.md file
  * README.md file

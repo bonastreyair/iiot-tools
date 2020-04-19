@@ -21,7 +21,6 @@ Each of the referenced examples will consist of a simple `code` in Arduino IDE f
     * [basic](/communications/wifi/basic)
     * [access point](/communications/wifi/access_point) (AP)
     * [http server](/communications/wifi/http_server)
-  * [websockets](/communications/websockets)
   * [mqtt](/communications/mqtt)
     * [publish](/communications/mqtt/publish)
     * [subscribe](/communications/mqtt/publish)
