@@ -1,21 +1,20 @@
 # Communications
 ## Wifi
-Some examples regarding wifi interactions.
-|   		                     |Description   				   	   	            | Code   	                                   | Validation       |
-|--------------------------------|:-------------------------------------------------|:--------------------------------------------:|:----------------:|
-|[Basic](wifi/basic)			 |Scan the surrounding networks and connect with one|[:white_check_mark:](wifi/basic/basic.ino)    |:white_check_mark:|
-|[Acces Point](wifi/access_point)|How to create an AP?                    |[:white_check_mark:](wifi/access_point/access_point.ino)|:white_check_mark:| 
-|[HTTP Server](wifi/http_server) |How to create a simple HTTP Webserver?    |[:white_check_mark:](wifi/http_server/http_server.ino)|:white_check_mark:| 
+| | Description | Code | Docs |
+|-|:------------|:----:|:----:|
+|[Basic](/communications/wifi/basic) |How to connect to a `WiFi` router as a client and scan the `WiFi` area? |[:white_check_mark:](/communications/wifi/basic/basic.ino)|[:white_check_mark:](/communications/wifi/basic/README.md)|
+|[Acces Point](/communications/wifi/access_point) |How to create a `WiFi` Acces Point? |[:white_check_mark:](/communications/wifi/access_point/access_point.ino)|[:white_check_mark:](/communications/wifi/access_point/README.md)| 
+|[HTTP Server](/communications/wifi/http_server) |How to create a simple `HTTP` Webserver? |[:white_check_mark:](/communications/wifi/http_server/http_server.ino)|[:white_check_mark:](/communications/wifi/http_server/README.md)| 
 
 ## MQTT
-|   		                     |Description   				   	   	            | Code   	             | Validation       |
-|--------------------------------|:-------------------------------------------------|:----------------------:|:----------------:|
-|[Publish](wifi/basic)			 |How can you publish new data in JSON? |[:x:](mqtt/publish/publish.ino)     |:x:|
-|[Subscribe](wifi/access_point)  |How can you subscribe for commands?   |[:x:](mqtt/subscribe/subscribe.ino) |:x:| 
-
-
-## Websockets
-Not ready yet.
+| | Description | Code | Docs |
+|-|:------------|:----:|:----:|
+|[Publish](/communications/mqtt/publish) |How publish a string or a json using `MQTT` protocols over `WiFi`? |[:white_check_mark:](/communications/mqtt/publish/publish.ino)|[:white_check_mark:](/communications/mqtt/publish/README.md)| 
+|[Subscribe](/communications/mqtt/subscribe) |How subscribe to a topic and recieve information from a `MQTT Broker` over `WiFi`? |[:white_check_mark:](/communications/mqtt/subscribe/subscribe.ino)|[:white_check_mark:](/communications/mqtt/subscribe/README.md)| 
 
 ## Bluetooth
-Not ready yet.
+| | Description | Code | Docs |
+|-|:------------|:----:|:----:|
+|[Scanner](/communications/bluetooth/scan) |How to scan the bluetooth space area? |[:x:](/communications/bluetooth/scan/scan.ino)|[:x:](/communications/bluetooth/README.md)|
+|[Server](/communications/bluetooth/server) |How to build a bluetooth server? |[:x:](/communications/bluetooth/server/server.ino)|[:x:](/communications/bluetooth/README.md)|
+|[Client](/communications/bluetooth/client) |How to connect to a bluetooth as a client? |[:x:](/communications/bluetooth/client/client.ino)|[:x:](/communications/bluetooth/README.md)|

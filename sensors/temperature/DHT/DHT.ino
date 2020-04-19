@@ -1,6 +1,6 @@
 #include "DHT.h"  // Include DHT library
 
-#define DHT_PIN  21     // Defines pin number to which the sensor is connected 
+#define DHT_PIN  21  // Defines pin number to which the sensor is connected 
 #define DHT_TYPE DHT22  // Defines the sensor type. It can be DHT11 or DHT22
 
 DHT dht(DHT_PIN, DHT_TYPE);  // Defines the sensor dht

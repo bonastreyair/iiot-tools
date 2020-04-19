@@ -1,8 +1,5 @@
 # Outputs
-## LED Light
-This text should explain what does this example do.
-* [Code Example](led_light)
-
-## OLED Screen
-Enables sending text to a standard oled screen via I2C.
-* [Code Example](oled_screen)
+| | Description | Code | Docs |
+|-|:------------|:----:|:----:|
+|[LED Light](/outputs/led_light) |How to integrate a `LED` light? |[:white_check_mark:](/outputs/led_light/led_light.ino)|[:white_check_mark:](/outputs/led_light/README.md)|
+|[OLED Screen](/outputs/oled_screen) |How to integrate an `OLED` Screen? |[:white_check_mark:](/outputs/oled_screen/oled_screen.ino)|[:white_check_mark:](/outputs/oled_screen/README.md)|

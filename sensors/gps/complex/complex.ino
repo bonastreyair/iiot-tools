@@ -1,38 +1,33 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS.h>
 
-const int Rx = 4; //Pinout Rx of ESP32
-const int Tx = 3; //Pinout Tx of ESP32
+const int Rx = 4;  // Pinout Rx of ESP32
+const int Tx = 3;  // Pinout Tx of ESP32
 
 TinyGPS gps;
-SoftwareSerial Serialgps(Rx,Tx);
- 
-void setup()
-{
-   Serial.begin(115200);
-   Serialgps.begin(9600); //Starts gps communication with UART
+SoftwareSerial Serialgps(Rx, Tx);
+
+void setup() {
+   Serial.begin(9600);
+   Serialgps.begin(9600);  // Starts gps communication with UART
 }
- 
-void loop()
-{
+
+void loop() {
    bool newData = false;
    unsigned long chars;
    unsigned short sentences, failed;
-   
+
    // Trying read new message for one second
-   for (unsigned long start = millis(); millis() - start < 1000;)
-   {
-      while (Serialgps.available())
-      {
+   for (unsigned long start = millis(); millis() - start < 1000;) {
+      while (Serialgps.available()) {
          char data;
          data = Serialgps.read();
-         if (gps.encode(data)) // New message received
+         if (gps.encode(data))  // New message received
             newData = true;
       }
    }
- 
-   if (newData)
-   {
+
+   if (newData) {
       float flat, flon;
       unsigned long age;
       gps.f_get_position(&flat, &flon, &age);
@@ -45,7 +40,7 @@ void loop()
       Serial.print(" PREC=");
       Serial.print(gps.hdop() == TinyGPS::GPS_INVALID_HDOP ? 0 : gps.hdop());
    }
- 
+
    gps.stats(&chars, &sentences, &failed);
    Serial.print(" CHARS=");
    Serial.print(chars);

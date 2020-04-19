@@ -9,7 +9,7 @@ For this reason we have writing a [complex.ino](complex/complex.ino) with a libr
 * ESP32
 * [GPS](docs/gep-neo-6.pdf) - [terraelectronica Source](https://www.terraelectronica.ru/pdf/show?pdf_file=%2Fz%2FDatasheet%2FU%2FUART+GPS+NEO-6M+User+Manual.pdf)
 
-### [Simple Cod](simple/simple.ino) (without library)
+### [Simple Code](simple/simple.ino) (without library)
 ```cpp
 #include <SoftwareSerial.h>
  
