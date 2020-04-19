@@ -1,12 +1,14 @@
 # Communications
 ## MQTT
 What is MQTT?
+
 MQTT is a simple messaging protocol, designed for constrained devices with low-bandwidth. So, it’s the perfect solution for Internet of Things applications. MQTT allows you to send commands to control outputs, read and publish data from sensor nodes and much more.
 
 ![Intro](docs/MQTT1.jpg)
 
 It is a lightweight publish and subscribe system where you can publish and receive messages as a client.
 Therefore, it makes it really easy to establish a communication between multiple devices.
+
 ![Intro](docs/MQTT2.jpg)
 
 ### Basic concepts
@@ -54,7 +56,7 @@ The broker is primarily responsible for receiving all messages, filtering the me
 
 ![Broker](docs/MQTT7.png)
 
-There are several brokers you can use, but in thios exercices we will use the aedes mqtt broker for both functionalities:
+There are several brokers you can use, but one easy way to do it is by using the aedes mqtt broker (Node-Red) for both Publish and Subscribe:
 
 - [Aedes Broker](https://flows.nodered.org/node/node-red-contrib-aedes)
 
