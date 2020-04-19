@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
  - `README` file list of available code
+ - Styled all `C++` codes as Standard
 
 ### Removed 
  - `websockets` from the main list
