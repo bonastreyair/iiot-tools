@@ -51,14 +51,14 @@ void publishData() {
   const char* newTopic = newTopicStr.c_str();
   const char* PubData = Data.c_str();
   client.publish(newTopic, PubData);
-  Serial.println("Client MQTT published to topic: " + String(newTopic) + " (QoS:" + String(QoS) + ")");
+  Serial.println("Client MQTT published to topic: " + String(newTopic));
 }
 
 void publishJson() {
   char buffer[512];  // Create the buffer where we will print the JSON document to publish through MQTT
 
   // Create JSON document
-  StaticJsonDocument<300> jsonDoc; // A little more than 300 bytes in the stack
+  StaticJsonDocument<300> jsonDoc;  // A little more than 300 bytes in the stack
   jsonDoc["device"] = "ESP32";  // Add names and values to the JSON document
   jsonDoc["sensorType"] = "Temperature";
   JsonArray values = jsonDoc["values"].to<JsonArray>();  // Or we can add an array to the string "values"

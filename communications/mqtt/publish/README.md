@@ -62,14 +62,14 @@ void publishData() {
   const char* newTopic = newTopicStr.c_str();
   const char* PubData = Data.c_str();
   client.publish(newTopic, PubData);
-  Serial.println("Client MQTT published to topic: " + String(newTopic) + " (QoS:" + String(QoS) + ")");
+  Serial.println("Client MQTT published to topic: " + String(newTopic));
 }
 
 void publishJson() {
   char buffer[512];  // Create the buffer where we will print the JSON document to publish through MQTT
 
   // Create JSON document
-  StaticJsonDocument<300> jsonDoc; // A little more than 300 bytes in the stack
+  StaticJsonDocument<300> jsonDoc;  // A little more than 300 bytes in the stack
   jsonDoc["device"] = "ESP32";  // Add names and values to the JSON document
   jsonDoc["sensorType"] = "Temperature";
   JsonArray values = jsonDoc["values"].to<JsonArray>();  // Or we can add an array to the string "values"
@@ -119,6 +119,7 @@ void checkConnections() {
     connectToMqttBroker();  // Reconnect Server MQTT Broker
   }
 }
+
 ```
 
 ### Functionality explanation
@@ -132,7 +133,7 @@ void publishData() {
   const char* newTopic = newTopicStr.c_str();
   const char* PubData = Data.c_str();
   client.publish(newTopic, PubData);
-  Serial.println("Client MQTT published to topic: " + String(newTopic) + " (QoS:" + String(QoS) + ")");
+  Serial.println("Client MQTT published to topic: " + String(newTopic));
 }
 ```
 * JSON document (serialized)
@@ -172,9 +173,9 @@ void publishJson() {
   
   In the code we use:
     - `WifiClient WifiClientName`: Creates a client that can connect to to a specified internet IP address and port. (We will use for the MQTT Broker connection)
-    - `Wifi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status.
-    - `Wifi.status()`: Return the connection status. 
-    - `Wifi.MacAdress()`: Gets the MAC Address of your WiFi shield
+    - `WiFi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status.
+    - `WiFi.status()`: Return the connection status. 
+    - `WiFi.macAdress()`: Gets the MAC Address of your WiFi shield
     - `WiFi.localIP()`: Gets the WiFi shield's IP address
  
 * **PubSubClient** 
