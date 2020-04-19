@@ -14,7 +14,7 @@ void setup() {
 
 	WiFi.softAP(WIFI_SSID, WIFI_PASSWORD);
 	WiFi.softAPConfig(local_ip, gateway, subnet);
-	Serial.println("ESP32 is now router WiFi and it is now active");
+	Serial.println("ESP32 is now a router WiFi and it is now active");
 }
 
 void loop() {

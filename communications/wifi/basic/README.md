@@ -55,4 +55,4 @@ void checkWiFiConnection() {
 
 ### Libraries
 * _Wifi_ by [Arduino](https://www.arduino.cc/en/Reference/WiFi) - Installed from the Arduino IDE Library Management
-![WiFi_library](../WiFi_library.png)
+![WiFi_library](../docs/WiFi_library.png)

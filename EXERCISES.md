@@ -8,4 +8,3 @@ Here you will find some exercise to be solved using parts of the tools included 
    1. mqtt integration
 1. dashboard (visualize your data)
 1. telegrambot (interact with your data)
-

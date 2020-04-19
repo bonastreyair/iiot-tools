@@ -22,7 +22,7 @@ void setup() {
 
 	WiFi.softAP(WIFI_SSID, WIFI_PASSWORD);
 	WiFi.softAPConfig(local_ip, gateway, subnet);
-	Serial.println("ESP32 is now router WiFi and it is now active");
+	Serial.println("ESP32 is now a router WiFi and it is now active");
 }
 
 void loop() {
@@ -31,4 +31,4 @@ void loop() {
 
 ### Libraries
 * _Wifi_ by [Arduino](https://www.arduino.cc/en/Reference/WiFi) - Installed from the Arduino IDE Library Management
-![WiFi_library](../WiFi_library.png)
+![WiFi_library](../docs/WiFi_library.png)
