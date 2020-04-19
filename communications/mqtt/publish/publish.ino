@@ -21,7 +21,7 @@ PubSubClient client(espClient);
 String jsonTopicStr;
 String newTopicStr;
 
-int before = millis(); //Initialize time
+int lastPublishTime = millis();  // Initialize time
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
@@ -34,21 +34,19 @@ void setup() {
 }
 
 void loop() {
-  checkConnections(); //We check the connection every time
-  
-  //But we publish information only every 5 seconds
-  int now = millis();
-  if (now-before >= 5000){
-    publishMqttData();  // Publishes to counter topic
-    publishMqttJson();  // Subscribes to json topic
-    before = millis();
-  }
+  checkConnections();  // We check the connection every time
 
+  int nowTime = millis();
+  if (nowTime - lastPublishTime >= 5000) { // We only publish information every 5 seconds
+    publishData();  // Publishes to counter topic
+    publishJson();  // Subscribes to json topic
+    lastPublishTime = nowTime;
+  }
 }
 
 /* Additional functions */
-void publishMqttData(){
-  String Data = "Hello there! \n This is a message from my ESP32 with MacAdress:" + String(macAddress)+"\n";
+void publishData() {
+  String Data = "Hello there! \n This is a message from my ESP32 with MacAdress:" + String(macAddress) + "\n";
   newTopicStr = String(macAddress) + String("/test");
   const char* newTopic = newTopicStr.c_str();
   const char* PubData = Data.c_str();
@@ -56,24 +54,24 @@ void publishMqttData(){
   Serial.println("Client MQTT published to topic: " + String(newTopic) + " (QoS:" + String(QoS) + ")");
 }
 
-void publishMqttJson(){
-  char buffer[512];  //create the buffer where we will print the JSON document to publish through MQTT
-  
-  //Create JSON document
-  StaticJsonDocument<300> JSONdoc; // a little more than 300 bytes in the stack
-  JSONdoc["device"] = "ESP32"; //add names and values to the JSON document
-  JSONdoc["sensorType"] = "Temperature";
-  JsonArray values = JSONdoc["values"].to<JsonArray>(); //Or we can add an array to the string "values"
-  
-  values.add(27);  //Inside the array we can add new values to "values" 
-  values.add(29); 
-  
-  serializeJson(JSONdoc, buffer); //serialize the JSON document to a buffer in order to publish it
+void publishJson() {
+  char buffer[512];  // Create the buffer where we will print the JSON document to publish through MQTT
+
+  // Create JSON document
+  StaticJsonDocument<300> jsonDoc; // A little more than 300 bytes in the stack
+  jsonDoc["device"] = "ESP32";  // Add names and values to the JSON document
+  jsonDoc["sensorType"] = "Temperature";
+  JsonArray values = jsonDoc["values"].to<JsonArray>();  // Or we can add an array to the string "values"
+
+  values.add(27);  // Inside the array we can add new values to "values"
+  values.add(29);
+
+  serializeJson(jsonDoc, buffer);  // Serialize the JSON document to a buffer in order to publish it
 
   jsonTopicStr = String(macAddress) + String("/json");
   const char* jsonTopic = jsonTopicStr.c_str();
   client.publish(jsonTopic, buffer);
-  Serial.println("Client MQTT published to topic: " + String(jsonTopic) + " (QoS:" + String(QoS) + ")");
+  Serial.println("Client MQTT published to topic: " + String(jsonTopic));
 }
 
 void connectToWiFiNetwork() {

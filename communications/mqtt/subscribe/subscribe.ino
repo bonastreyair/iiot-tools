@@ -29,7 +29,7 @@ void setup() {
 
   connectToWiFiNetwork();  // Connects to the configured network
   connectToMqttBroker();  // Connects to the configured mqtt broker
-  setMqttSubscriptions();  // Subscribes to configured topics
+  setSubscriptions();  // Subscribes to configured topics
 }
 
 void loop() {
@@ -37,7 +37,7 @@ void loop() {
 }
 
 /* Additional functions */
-void setMqttSubscriptions() {
+void setSubscriptions() {
   cmdTopicStr = String(macAddress) + String("/cmd");
   const char* cmdTopic = cmdTopicStr.c_str();
   client.subscribe(cmdTopic, QoS);
