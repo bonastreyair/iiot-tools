@@ -1,5 +1,230 @@
 # Communications
 ## MQTT - Publish
-This text should explain what does this code do.
 
+
+### Hardware
+* ESP32
+
+### Functionality explanation
+
+Now that we know what [MQTT](../README.md) is, with this code we can publish either:
+- Simple string message:
+```cpp
+void publishMqttData(){
+  String Data = "Hello there! \n This is a message from my ESP32 with MacAdress:" + String(macAddress)+"\n";
+  newTopicStr = String(macAddress) + String("/test");
+  const char* newTopic = newTopicStr.c_str();
+  const char* PubData = Data.c_str();
+  client.publish(newTopic, PubData);
+  Serial.println("Client MQTT published to topic: " + String(newTopic) + " (QoS:" + String(QoS) + ")");
+}
+```
+- JSON document (serialized):
+```cpp
+void publishMqttJson(){
+  char buffer[512];  //create the buffer where we will print the JSON document to publish through MQTT
+  
+  //Create JSON document
+  StaticJsonDocument<300> JSONdoc; // a little more than 300 bytes in the stack
+  JSONdoc["device"] = "ESP32"; //add names and values to the JSON document
+  JSONdoc["sensorType"] = "Temperature";
+  JsonArray values = JSONdoc["values"].to<JsonArray>(); //Or we can add an array to the string "values"
+  
+  values.add(27);  //Inside the array we can add new values to "values" 
+  values.add(29); 
+  
+  serializeJson(JSONdoc, buffer); //serialize the JSON document to a buffer in order to publish it
+
+  jsonTopicStr = String(macAddress) + String("/json");
+  const char* jsonTopic = jsonTopicStr.c_str();
+  client.publish(jsonTopic, buffer);
+  Serial.println("Client MQTT published to topic: " + String(jsonTopic) + " (QoS:" + String(QoS) + ")");
+}
+```
+
+### [Code](publish.ino)
+```cpp
+#include <Wire.h>
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>
+
+// Replace the next variables with your Wi-Fi SSID/Password
+const char* WIFI_SSID = "WIFI_SSID";
+const char* WIFI_PASSWORD = "WIFI_PASSWORD";
+char macAddress[18];
+
+// Add MQTT Broker settings
+const char* MQTT_BROKER_IP = "BROKER_IP";
+const int MQTT_PORT = 1883;
+const bool RETAINED = true;
+const int QoS = 0;  // Quality of Service for the subscriptions
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+// Topic Variables
+String jsonTopicStr;
+String newTopicStr;
+
+int before = millis(); //Initialize time
+
+void setup() {
+  Serial.begin(9600);  // Starts the serial communication
+  Serial.println("");
+
+  client.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
+
+  connectToWiFiNetwork();  // Connects to the configured network
+  connectToMqttBroker();  // Connects to the configured mqtt broker
+}
+
+void loop() {
+  checkConnections(); //We check the connection every time
+  
+  //But we publish information only every 5 seconds
+  int now = millis();
+  if (now-before >= 5000){
+    publishMqttData();  // Publishes to counter topic
+    publishMqttJson();  // Subscribes to json topic
+    before = millis();
+  }
+
+}
+
+/* Additional functions */
+void publishMqttData(){
+  String Data = "Hello there! \n This is a message from my ESP32 with MacAdress:" + String(macAddress)+"\n";
+  newTopicStr = String(macAddress) + String("/test");
+  const char* newTopic = newTopicStr.c_str();
+  const char* PubData = Data.c_str();
+  client.publish(newTopic, PubData);
+  Serial.println("Client MQTT published to topic: " + String(newTopic) + " (QoS:" + String(QoS) + ")");
+}
+
+void publishMqttJson(){
+  char buffer[512];  //create the buffer where we will print the JSON document to publish through MQTT
+  
+  //Create JSON document
+  StaticJsonDocument<300> JSONdoc; // a little more than 300 bytes in the stack
+  JSONdoc["device"] = "ESP32"; //add names and values to the JSON document
+  JSONdoc["sensorType"] = "Temperature";
+  JsonArray values = JSONdoc["values"].to<JsonArray>(); //Or we can add an array to the string "values"
+  
+  values.add(27);  //Inside the array we can add new values to "values" 
+  values.add(29); 
+  
+  serializeJson(JSONdoc, buffer); //serialize the JSON document to a buffer in order to publish it
+
+  jsonTopicStr = String(macAddress) + String("/json");
+  const char* jsonTopic = jsonTopicStr.c_str();
+  client.publish(jsonTopic, buffer);
+  Serial.println("Client MQTT published to topic: " + String(jsonTopic) + " (QoS:" + String(QoS) + ")");
+}
+
+void connectToWiFiNetwork() {
+  Serial.print("Connecting with Wi-Fi: " + String(WIFI_SSID));  // Print the network which you want to connect
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500); Serial.print("..");  // Connecting effect
+  }
+  Serial.println("..connected!");
+  String macAddressStr = WiFi.macAddress().c_str();
+  strcpy(macAddress, macAddressStr.c_str());
+}
+
+void connectToMqttBroker() {
+  Serial.print("Connecting with MQTT Broker: " + String(MQTT_BROKER_IP));  // Print the broker which you want to connect
+  client.connect(macAddress);  // Using unique mac address from ESP32
+  while (!client.connected()) {
+    delay(500); Serial.print("..");  // Connecting effect
+    client.connect(macAddress);  // Using unique mac address from ESP32
+  }
+  Serial.println("..connected! (ClientID: " + String(macAddress) + ")");
+}
+
+void checkConnections() {
+  if (client.connected()) {
+    client.loop();
+  } else {  // Try to reconnect
+    Serial.println("Connection has been lost with MQTT Broker");
+    if (WiFi.status() != WL_CONNECTED) {  // Check wifi connection
+      Serial.println("Connection has been lost with Wi-Fi");
+      connectToWiFiNetwork();  // Reconnect Wifi
+    }
+    connectToMqttBroker();  // Reconnect Server MQTT Broker
+  }
+}
+```
+
+### Libraries
+* **Wire** --> Is standard in the Arduino libraries folder.
+
+  This library allows you to communicate with I2C / TWI devices.
+    - For more [info](https://www.arduino.cc/en/reference/wire)
+  
+* **Wifi** --> Is standard in the Arduino libraries folder.
+  
+  This library allows an Arduino board to connect to the internet. It can serve as either a server accepting incoming connections or a client making outgoing ones. 
+  
+    - For more [info](https://www.arduino.cc/en/Reference/WiFi)
+  
+  In the code we use:
+    - WifiClient WifiClientName: Creates a client that can connect to to a specified internet IP address and port. (We will use for the MQTT Broker connection)
+    - `Wifi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status.
+    - `Wifi.status()`: Return the connection status. 
+    - `Wifi.MacAdress()`: Gets the MAC Address of your WiFi shield
+ 
+* **PubSubClient** 
+
+  To install this library we must go to Tools > Library Manager, and search for PubSubClient by Nick O'Leary, and click Install:
+  ![PubSubClient](docs/PUB1.png)
+  
+  This library provides a client for doing simple publish/subscribe messaging with a server that supports MQTT.
+   - For more [info](https://pubsubclient.knolleary.net/api.html)
+   
+  In the code we use:
+   - `PubSubClient MQTTClientName(WifiClientName)`: Creates a partially initialised client instance. 
+   - `MQTTClientName.setServer(MQTT_BROKER_IP, MQTT_PORT)`:  Sets the server details.
+   - `MQTTClientName.connect(ClientID)`: Connects the client. In our case we use the MacAdress as clientID.
+   - `MQTTClientName.connected()`: Checks whether the client is connected to the server (false, true).
+   - `MQTTClientName.loop()`: This should be called regularly to allow the client to process incoming messages and maintain its connection to the server (false, true).
+   - `MQTTClientName.publish(topic, payload)`: Publishes a string message to the specified topic. Both topic and payload have to be a const char.
+
+* **ArduinoJson**
+
+  To install this library we must go to Tools > Library Manager, and search for ArduinoJson by Benoit Blanchon, and click Install:
+  ![ArduinoJson](docs/PUB2.png)
+  
+  ArduinoJson is a C++ JSON library for Arduino and IoT (Internet Of Things).
+   - For more [info](https://arduinojson.org/v6/api/)
+   
+  In the code we use:
+   - `StaticJsonDocument<300> JSONdoc`: 
+    
+      JsonDocument stores a JSON document in memory. It owns the memory referenced by JsonArray, JsonObject, and JsonVariant.
+
+      JsonDocument contains a fixed-size memory pool, with a monotonic allocator. This design allows ArduinoJson to be very efficient but requires some discipline on your side:
+
+      - Because the size is fixed, you need to specify the size when you create the JsonDocument (300 in this case)
+      - Because the allocator is monotonic, it cannot release memory when you call JsonObject::remove() for example.
+      
+   - `JSONdoc["name"] = "value"`: By using this we can add new names nad values on the JSONdoc object.
+   - `JsonArray values = JSONdoc["values"].to<JsonArray>()`: This let us create an array in the JSONdoc object named *values
+   - `values.add(27)`: By using this we can add values to the array created.
+   
+     By using this 3 functions we create a JSON document with and object and an array in it.
+       ```
+       {
+         "device":"ESP32",
+         "sensorType":"Temperature",
+         "values":[27,29]
+       }
+       ```
+   - `serializeJson(JSONdoc, char buffer)`: This function serializes a JsonDocument to create a minified JSON document, i.e. a document without spaces or line break between values. And store it in a *char* for further publish.
+   
+      `{"device":"ESP32","sensorType":"Temperature","values":[27,29]}`
+   
+  
+   
 [[Go back]](/communications)
