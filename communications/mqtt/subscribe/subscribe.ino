@@ -3,12 +3,12 @@
 #include <PubSubClient.h>
 
 // Replace the next variables with your Wi-Fi SSID/Password
-const char* WIFI_SSID = "YOUR_SSID_NAME";
-const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
+const char *WIFI_SSID = "YOUR_SSID_NAME";
+const char *WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 char macAddress[18];
 
 // Add MQTT Broker settings
-const char* MQTT_BROKER_IP = "BROKER_IP";
+const char *MQTT_BROKER_IP = "BROKER_IP";
 const int MQTT_PORT = 1883;
 const bool RETAINED = true;
 const int QoS = 0;  // Quality of Service for the subscriptions
