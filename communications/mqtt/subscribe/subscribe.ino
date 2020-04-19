@@ -76,10 +76,12 @@ void connectToWiFiNetwork() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500); Serial.print("..");  // Connecting effect
   }
-  Serial.println("..connected!");
+  Serial.print("..connected! (ip: ");  // After being connected to a network, our ESP32 should have a IP
+  Serial.println(WiFi.localIP());
   String macAddressStr = WiFi.macAddress().c_str();
   strcpy(macAddress, macAddressStr.c_str());
 }
+
 
 void connectToMqttBroker() {
   Serial.print("Connecting with MQTT Broker: " + String(MQTT_BROKER_IP));  // Print the broker which you want to connect
