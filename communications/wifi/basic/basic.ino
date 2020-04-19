@@ -11,6 +11,7 @@ void setup() {
   connectToWiFiNetwork();  // Connect the configured network
   Serial.print("Device IP: ");  // After being connected to a network, our ESP32 should have a IP
   Serial.println(WiFi.localIP());
+  Serial.println(WiFi.macAddress());
 }
 
 void loop() {
