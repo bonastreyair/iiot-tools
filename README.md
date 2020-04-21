@@ -38,7 +38,7 @@ All the examples are ordered in the following groups. Navigate through them and 
 |[Foto Resistor](/sensors/foto-resistor) |How to integrate an analog foto resistor sensor? |[:white_check_mark:](/sensors/foto-resistor/foto-resistor.ino)|[:white_check_mark:](/sensors/foto-resistor/README.md)|
 |[Humidity - DHT](/sensors/humidity/DHT) |How to integrate a digital `DHT` humidity sensor? |[:white_check_mark:](/sensors/humidity/DHT/DHT.ino)|[:white_check_mark:](/sensors/humidity/README.md)|
 
-[Go to top](#industrial-internet-of-things-tools)
+[[Go to top]](#industrial-internet-of-things-tools)
 
 ## [Outputs](/outputs)
 ### [LED Light](/outputs/led_light)
@@ -53,7 +53,7 @@ All the examples are ordered in the following groups. Navigate through them and 
 |[SDD1306](/outputs/oled_screen/SDD1306) |How to integrate a  `OLED` Screen using `SDD1306` library? |[:white_check_mark:](/outputs/oled_screen/SDD1306/SDD1306.ino)|[:white_check_mark:](/outputs/oled_screen/SDD1306/README.md)|
 |[U8g2](/outputs/oled_screen/U8g2) |How to integrate an `OLED` Screen using `U8g2` library? |[:white_check_mark:](/outputs/oled_screen/U8g2/U8g2.ino)|[:white_check_mark:](/outputs/oled_screen/U8g2/README.md)|
 
-[Go to top](#industrial-internet-of-things-tools)
+[[Go to top]](#industrial-internet-of-things-tools)
 
 ## [Communications](/communications)
 ### [Wifi](/communications/wifi)
@@ -76,7 +76,7 @@ All the examples are ordered in the following groups. Navigate through them and 
 |[Server](/communications/bluetooth/server) |How to build a bluetooth server? |[:x:](/communications/bluetooth/server/server.ino)|[:x:](/communications/bluetooth/README.md)|
 |[Client](/communications/bluetooth/client) |How to connect to a bluetooth as a client? |[:x:](/communications/bluetooth/client/client.ino)|[:x:](/communications/bluetooth/README.md)|
 
-[Go to top](#industrial-internet-of-things-tools)
+[[Go to top]](#industrial-internet-of-things-tools)
 
 ## [System](/system)
 | | Description | Code | Docs |
@@ -85,13 +85,13 @@ All the examples are ordered in the following groups. Navigate through them and 
 |[Low Power](/system/low_power) |Some basic examples to understand how ESP32 works in deep sleep mode |[:white_check_mark:](/system/low_power/low_power.ino)|[:white_check_mark:](/system/low_power/README.md)|
 |[Multi Tasks](/system/multi-tasks) |Some basic examples how to use more than one simultaneous task |[:x:](/system/multi-tasks/multi-tasks.ino)|[:x:](/system/multi-tasks/README.md)|
 
-[Go to top](#industrial-internet-of-things-tools)
+[[Go to top]](#industrial-internet-of-things-tools)
 
 ## Projects
 | | Description | Dependancies | Difficulty |
 |-|:------------|:------------:|:----------:|
 
-[Go to top](#industrial-internet-of-things-tools)
+[[Go to top]](#industrial-internet-of-things-tools)
 
 ## Tested Hardware
 - ESP32 Dev Kit V1 - [Info](https://docs.zerynth.com/latest/official/board.zerynth.doit_esp32/docs/index.html)
