@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include <WiFi.h>
-#include <PubSubClient.h>
-#include <ArduinoJson.h>
+#include <PubSubClient.h>  // https://github.com/knolleary/pubsubclient
+#include <ArduinoJson.h>  // https://arduinojson.org/
 
 // Replace the next variables with your Wi-Fi SSID/Password
 const char *WIFI_SSID = "WIFI_SSID";
@@ -12,16 +12,9 @@ char macAddress[18];
 const char *MQTT_BROKER_IP = "BROKER_IP";
 const int MQTT_PORT = 1883;
 const bool RETAINED = true;
-const int QoS = 0;  // Quality of Service for the subscriptions
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-
-// Topic Variables
-String jsonTopicStr;
-String newTopicStr;
-
-int lastPublishTime = millis();  // Initialize time
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
@@ -36,42 +29,126 @@ void setup() {
 void loop() {
   checkConnections();  // We check the connection every time
 
-  int nowTime = millis();
-  if (nowTime - lastPublishTime >= 5000) { // We only publish information every 5 seconds
-    publishData();  // Publishes to counter topic
-    publishJson();  // Subscribes to json topic
-    lastPublishTime = nowTime;
+  // Publish every 2 seconds
+  static int nowTime = millis();
+  static int startTime = 0;
+  static int elapsedTime = 0;
+  nowTime = millis();
+  elapsedTime = nowTime - startTime;
+  if (elapsedTime >= 2000) {
+    publishIntNumber();  // Publishes an int number
+    publishFloatNumber();  // Publishes a float number
+    publishString();  // Publishes string
+    publishSmallJson();  // Publishes a small json
+    publishBigJson();  // Publishes a big json
+    startTime = nowTime;
   }
 }
 
 /* Additional functions */
-void publishData() {
-  String Data = "Hello there! \n This is a message from my ESP32 with MacAdress:" + String(macAddress) + "\n";
-  newTopicStr = String(macAddress) + String("/test");
-  const char* newTopic = newTopicStr.c_str();
-  const char* PubData = Data.c_str();
-  client.publish(newTopic, PubData);
-  Serial.println("Client MQTT published to topic: " + String(newTopic));
+void publishIntNumber() {
+  static int counter = 0;
+  static const String topicStr = createTopic("int_number");
+  static const char* topic = topicStr.c_str();
+
+  counter++;
+
+  client.publish(topic, String(counter).c_str(), RETAINED);
+  Serial.print(topic);
+  Serial.print(" -> ");
+  Serial.println(counter);
 }
 
-void publishJson() {
-  char buffer[512];  // Create the buffer where we will print the JSON document to publish through MQTT
+void publishFloatNumber() {
+  static float counter = 0;
+  static const String topicStr = createTopic("float_number");
+  static const char* topic = topicStr.c_str();
 
-  // Create JSON document
-  StaticJsonDocument<300> jsonDoc;  // A little more than 300 bytes in the stack
-  jsonDoc["device"] = "ESP32";  // Add names and values to the JSON document
-  jsonDoc["sensorType"] = "Temperature";
-  JsonArray values = jsonDoc["values"].to<JsonArray>();  // Or we can add an array to the string "values"
+  counter = counter + 0.1;
 
-  values.add(27);  // Inside the array we can add new values to "values"
-  values.add(29);
+  client.publish(topic, String(counter).c_str(), RETAINED);
+  Serial.print(topic);
+  Serial.print(" -> ");
+  Serial.println(counter);
+}
 
-  serializeJson(jsonDoc, buffer);  // Serialize the JSON document to a buffer in order to publish it
+void publishString() {
+  static int counter = 0;
+  static const String topicStr = createTopic("string");
+  static const char* topic = topicStr.c_str();
 
-  jsonTopicStr = String(macAddress) + String("/json");
-  const char* jsonTopic = jsonTopicStr.c_str();
-  client.publish(jsonTopic, buffer);
-  Serial.println("Client MQTT published to topic: " + String(jsonTopic));
+  counter++;
+  String text = "this is a text with dynamic numbers " + String(counter);
+
+  client.publish(topic, text.c_str(), RETAINED);
+  Serial.print(topic);
+  Serial.print(" -> ");
+  Serial.println(text);
+}
+
+void publishSmallJson() {
+  static const String topicStr = createTopic("small_json");
+  static const char* topic = topicStr.c_str();
+
+  StaticJsonDocument<128> doc;  // Create JSON document of 128 bytes
+  char buffer[128];  // Create the buffer where we will print the JSON document to publish through MQTT
+
+  doc["device"] = "ESP32";  // Add names and values to the JSON document
+  doc["sensor"] = "DHT22";
+  JsonObject values1 = doc.createNestedObject("values1");  // We can add another Object
+  values1["t"] = 19.30;
+  values1["h"] = 78;
+  
+  JsonArray values2 = doc.createNestedArray("values2");  // We can add an Array
+  values2.add(1);  // Inside the array we can add new values to "values1"
+  values2.add(2);  // From this number on, it will not be printed since it overpasses 128 bytes
+  values2.add(3);  
+  values2.add(4);
+
+  serializeJson(doc, buffer);  // Serialize the JSON document to a buffer in order to publish it
+  client.publish(topic, buffer, RETAINED);
+  Serial.print(topic);
+  Serial.print(" -> ");
+  Serial.println(buffer);
+}
+
+void publishBigJson() {
+  static const String topicStr = createTopic("big_json");
+  static const char* topic = topicStr.c_str();
+
+  DynamicJsonDocument doc(2048);  // Create JSON document
+  char buffer[2048];  // Create the buffer where we will print the JSON document to publish through MQTT
+
+  doc["device"] = "ESP32";  // Add names and values to the JSON document
+  doc["sensor"] = "DHT22";
+  JsonObject values1 = doc.createNestedObject("values1");  // We can add another Object
+  values1["t"] = 19.30;
+  values1["h"] = 78;
+  
+  JsonArray values2 = doc.createNestedArray("values2");  // We can add an Array
+  values2.add(1);  // Inside the array we can add new values to "values"
+  values2.add(2);
+  values2.add(3);
+  values2.add(4);
+  values2.add(5);
+  values2.add(6);
+  values2.add(7);
+  values2.add(8);
+  values2.add(9);
+  values2.add(10);
+  values2.add(11);
+  values2.add(12);
+
+  size_t n = serializeJson(doc, buffer);  // Serialize the JSON document to a buffer in order to publish it
+  client.publish_P(topic, buffer, n);  // No RETAINED option
+  Serial.print(topic);
+  Serial.print(" -> ");
+  Serial.println(buffer);
+}
+
+String createTopic(char* topic){
+  String topicStr = String(macAddress) + "/" + topic;
+  return topicStr;
 }
 
 void connectToWiFiNetwork() {
@@ -80,14 +157,15 @@ void connectToWiFiNetwork() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500); Serial.print("..");  // Connecting effect
   }
-  Serial.print("..connected! (ip: ");  // After being connected to a network, our ESP32 should have a IP
-  Serial.println(WiFi.localIP());
+  Serial.print("..connected!  (ip: ");  // After being connected to a network, our ESP32 should have a IP
+  Serial.print(WiFi.localIP());
+  Serial.println(")");
   String macAddressStr = WiFi.macAddress().c_str();
   strcpy(macAddress, macAddressStr.c_str());
 }
 
 void connectToMqttBroker() {
-  Serial.print("Connecting with MQTT Broker: " + String(MQTT_BROKER_IP));  // Print the broker which you want to connect
+  Serial.print("Connecting with MQTT Broker:" + String(MQTT_BROKER_IP));  // Print the broker which you want to connect
   client.connect(macAddress);  // Using unique mac address from ESP32
   while (!client.connected()) {
     delay(500); Serial.print("..");  // Connecting effect
