@@ -4,8 +4,8 @@
 #include <ArduinoJson.h>  // https://arduinojson.org/
 
 // Replace the next variables with your Wi-Fi SSID/Password
-const char *WIFI_SSID = "WIFI_SSID";
-const char *WIFI_PASSWORD = "WIFI_PASSWORD";
+const char *WIFI_SSID = "YOUR_SSID_NAME";
+const char *WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 char macAddress[18];
 
 // Add MQTT Broker settings
@@ -54,9 +54,7 @@ void publishIntNumber() {
   counter++;
 
   client.publish(topic, String(counter).c_str(), RETAINED);
-  Serial.print(topic);
-  Serial.print(" -> ");
-  Serial.println(counter);
+  Serial.println(" <= " + String(topic) + ": " + String(counter));
 }
 
 void publishFloatNumber() {
@@ -67,9 +65,7 @@ void publishFloatNumber() {
   counter = counter + 0.1;
 
   client.publish(topic, String(counter).c_str(), RETAINED);
-  Serial.print(topic);
-  Serial.print(" -> ");
-  Serial.println(counter);
+  Serial.println(" <= " + String(topic) + ": " + String(counter));
 }
 
 void publishString() {
@@ -81,9 +77,7 @@ void publishString() {
   String text = "this is a text with dynamic numbers " + String(counter);
 
   client.publish(topic, text.c_str(), RETAINED);
-  Serial.print(topic);
-  Serial.print(" -> ");
-  Serial.println(text);
+  Serial.println(" <= " + String(topic) + ": " + text);
 }
 
 void publishSmallJson() {
@@ -98,18 +92,16 @@ void publishSmallJson() {
   JsonObject values1 = doc.createNestedObject("values1");  // We can add another Object
   values1["t"] = 19.30;
   values1["h"] = 78;
-  
+
   JsonArray values2 = doc.createNestedArray("values2");  // We can add an Array
   values2.add(1);  // Inside the array we can add new values to "values1"
   values2.add(2);  // From this number on, it will not be printed since it overpasses 128 bytes
-  values2.add(3);  
+  values2.add(3);
   values2.add(4);
 
   serializeJson(doc, buffer);  // Serialize the JSON document to a buffer in order to publish it
   client.publish(topic, buffer, RETAINED);
-  Serial.print(topic);
-  Serial.print(" -> ");
-  Serial.println(buffer);
+  Serial.println(" <= " + String(topic) + ": " + String(buffer));
 }
 
 void publishBigJson() {
@@ -124,7 +116,7 @@ void publishBigJson() {
   JsonObject values1 = doc.createNestedObject("values1");  // We can add another Object
   values1["t"] = 19.30;
   values1["h"] = 78;
-  
+
   JsonArray values2 = doc.createNestedArray("values2");  // We can add an Array
   values2.add(1);  // Inside the array we can add new values to "values"
   values2.add(2);
@@ -141,12 +133,10 @@ void publishBigJson() {
 
   size_t n = serializeJson(doc, buffer);  // Serialize the JSON document to a buffer in order to publish it
   client.publish_P(topic, buffer, n);  // No RETAINED option
-  Serial.print(topic);
-  Serial.print(" -> ");
-  Serial.println(buffer);
+  Serial.println(" <= " + String(topic) + ": " + String(buffer));
 }
 
-String createTopic(char* topic){
+String createTopic(char* topic) {
   String topicStr = String(macAddress) + "/" + topic;
   return topicStr;
 }
