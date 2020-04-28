@@ -1,5 +1,5 @@
 # Outputs
-## OLED Screen
+## OLED Screen - SDD1306
 Enables sending text to a standard oled screen via I2C.
 
 [[Go back]](/outputs)
@@ -58,4 +58,4 @@ void loop() {
 ### Libraries
 * _Wire_ by [Arduino](https://www.arduino.cc/en/reference/wire) - Preinstalled with Arduino IDE
 * _SSD1306_ by ThingPulse, Fabrice Weinberg [Github](https://github.com/ThingPulse/esp8266-oled-ssd1306) - Installed from the Arduino IDE Library Management
-![SSD1306](docs/SSD1306_installation.jpeg)
+![SSD1306](../docs/SSD1306_installation.jpeg)

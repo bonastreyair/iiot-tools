@@ -6,7 +6,7 @@ Using an RGB LED.
 
 ### Hardware
 * ESP32
-* [RGB LED](docs/RGB.jpg)
+* [RGB LED](../docs/RGB.jpg)
 * Resistor - 330 Ohm
 
 ### [Code](RGB.ino)
@@ -61,4 +61,4 @@ void setColor(char color) {
 * No needed libraries
 
 ### Connection
-![Connection RGB LED light](docs/connection_RGB.png)
+![Connection RGB LED light](../docs/connection_RGB.png)

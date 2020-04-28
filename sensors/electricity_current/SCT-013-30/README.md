@@ -1,3 +1,16 @@
+# Sensors
+## Electricity Current
+A clamp meter `SCT-013` which can measure max. 30A, you will need to buy `LM358` if you work with Arduino or `ESP32`.
+
+[[Go back]](/sensors)
+
+### Hardware
+- ESP32
+- [SCT-013-30](../docs/SCT-013-30.pdf) - [MCIelectronic Source](https://www.mcielectronics.cl/website_MCI/static/documents/Datasheet_SCT013.pdf)
+- [LM358](../docs/LM358.pdf) - [TexasInstruments Source](http://www.ti.com/lit/ds/symlink/lm358-n.pdf)
+
+### [Code](SCT-013-30.ino) 
+```cpp
 #define SCT013 34
 
 void setup() {
@@ -34,3 +47,15 @@ float readEnergyConsumption() {
   current = sqrt((sumatory) / N);  // ecuación del RMS
   return current;
 }
+```
+
+### Libraries
+- _SoftwareSerial_ by Peter Lerup and Dirk Kaar [GitHub](https://github.com/plerup/espsoftwareserial/) - Installed from GitHub
+![SoftwareSerial_library](../docs/SoftwareSerial_library.png)
+
+### Connection
+![Connection SCT-013-30](../docs/SCT-013-30.jpg)
+![Connection internal LM358](../docs/LM358.jfif)
+![Connection external LM358](../docs/LM358_OA.jpg)
+
+[[Go back]](/sensors)

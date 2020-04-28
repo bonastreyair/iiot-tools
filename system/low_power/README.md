@@ -2,6 +2,11 @@
 ## Low Power
 This code gives a simple example to set deep sleep mode and enable a timer to start the ESP32.
 
+It tries to answare some common questions:
+ - How can we set the device to sleep?
+ - How can we store variables that support sleeping mode?
+ - How can we know the wakeup reason?
+
 [[Go back]](/system)
 
 ### Hardware

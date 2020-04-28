@@ -1,5 +1,5 @@
 # Outputs
-## OLED Screen
+## OLED Screen - U8g2
 Enables sending text to a standard oled screen via I2C.
 
 [[Go back]](/outputs)
@@ -62,4 +62,4 @@ void loop() {
 ### Libraries
 * _Wire_ by [Arduino](https://www.arduino.cc/en/reference/wire) - Preinstalled with Arduino IDE
 * _U8g2_ by oliver [Github](https://github.com/olikraus/u8g2) - Installed from the Arduino IDE Library Management
-![u8g2](docs/u8g2_installation.png)
+![u8g2](../docs/u8g2_installation.png)

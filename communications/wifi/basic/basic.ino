@@ -34,8 +34,9 @@ void connectToWiFiNetwork() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500); Serial.print("..");  // Connecting effect
   }
-  Serial.print("..connected! (ip: ");  // After being connected to a network, our ESP32 should have a IP
-  Serial.println(WiFi.localIP());
+  Serial.print("..connected!  (ip: ");  // After being connected to a network, our ESP32 should have a IP
+  Serial.print(WiFi.localIP());
+  Serial.println(")");
 }
 
 void checkWiFiConnection() {

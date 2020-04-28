@@ -17,15 +17,15 @@ const int MQTT_PORT = 1883;
 const bool RETAINED = true;
 const int QoS = 0;  // Quality of Service for the subscriptions
 
-WiFiClient espClient;
-PubSubClient client(espClient);
+WiFiClient wifiClient;
+PubSubClient mqttClient(wifiClient);
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
   Serial.println("");
 
-  client.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
-  client.setCallback(callback);  // Prepare what to do when a message is recieved
+  mqttClient.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
+  mqttClient.setCallback(callback);  // Prepare what to do when a message is recieved
 
   connectToWiFiNetwork();  // Connects to the configured network
   connectToMqttBroker();  // Connects to the configured mqtt broker
@@ -37,7 +37,7 @@ void loop() {
 }
 
 /* Additional functions */
-void setSubscriptions(){
+void setSubscriptions() {
   subscribe(COMMAND_TOPIC);
   subscribe(TEST_TOPIC);
 }
@@ -45,7 +45,7 @@ void setSubscriptions(){
 void subscribe(char* newTopic) {
   const String topicStr = createTopic(newTopic);
   const char* topic = topicStr.c_str();
-  client.subscribe(topic, QoS);
+  mqttClient.subscribe(topic, QoS);
   Serial.println("Client MQTT subscribed to topic: " + topicStr + " (QoS:" + String(QoS) + ")");
 }
 
@@ -95,17 +95,17 @@ void connectToWiFiNetwork() {
 
 void connectToMqttBroker() {
   Serial.print("Connecting with MQTT Broker: " + String(MQTT_BROKER_IP));  // Print the broker which you want to connect
-  client.connect(macAddress);  // Using unique mac address from ESP32
-  while (!client.connected()) {
+  mqttClient.connect(macAddress);  // Using unique mac address from ESP32
+  while (!mqttClient.connected()) {
     delay(500); Serial.print("..");  // Connecting effect
-    client.connect(macAddress);  // Using unique mac address from ESP32
+    mqttClient.connect(macAddress);  // Using unique mac address from ESP32
   }
   Serial.println("..connected! (ClientID: " + String(macAddress) + ")");
 }
 
 void checkConnections() {
-  if (client.connected()) {
-    client.loop();
+  if (mqttClient.connected()) {
+    mqttClient.loop();
   } else {  // Try to reconnect
     Serial.println("Connection has been lost with MQTT Broker");
     if (WiFi.status() != WL_CONNECTED) {  // Check wifi connection
@@ -115,3 +115,4 @@ void checkConnections() {
     connectToMqttBroker();  // Reconnect Server MQTT Broker
     setSubscriptions();  // Subscribes to configured topics
   }
+}

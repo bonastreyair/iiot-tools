@@ -5,8 +5,8 @@ Using the button to control states.
 [[Go back]](/sensors)
 
 ### Hardware
-* ESP32
-* [Button](docs/datasheet_button.pdf) - [4donline Source](https://4donline.ihs.com/images/VipMasterIC/IC/OMRN/OMRN-S-A0001309768/OMRN-S-A0001309768-1.pdf?hkey=52A5661711E402568146F3353EA87419)
+- ESP32
+- [Button](docs/datasheet_button.pdf) - [4donline Source](https://4donline.ihs.com/images/VipMasterIC/IC/OMRN/OMRN-S-A0001309768/OMRN-S-A0001309768-1.pdf?hkey=52A5661711E402568146F3353EA87419)
 
 ### [Code](button.ino)
 ```cpp
@@ -29,13 +29,14 @@ void loop(){
   } else {
     Serial.println('Button is not pressed');
   }
-
   delay(1000);  // Check the button every 1000 miliseconds
 }
 ```
 
 ### Libraries
-* No needed libraries
+- No needed libraries
 
 ### Connection
 ![Connection image](docs/arduino_button.jpeg)
+
+[[Go back]](/sensors)

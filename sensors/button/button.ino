@@ -17,6 +17,5 @@ void loop(){
   } else {
     Serial.println('Button is not pressed');
   }
-
   delay(1000);  // Check the button every 1000 miliseconds
 }

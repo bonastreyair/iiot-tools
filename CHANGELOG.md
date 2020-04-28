@@ -33,8 +33,9 @@ All notable changes to this project will be documented in this file.
 	 - LED Light
 	 - OLED Screen
 	 - Low Power
+	 - Multi Task
  - Proposed exercises
- - Datasheets for the 
+ - Datasheets for the sensors
 
 ### Changed
  - `README` file list of available code

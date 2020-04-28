@@ -6,7 +6,7 @@ Using a basic LED Light.
 
 ### Hardware
 * ESP32
-* [Simple LED](docs/basic.png)
+* [Simple LED](../docs/basic.png)
 
 ### [Code](basic.ino)
 ```cpp
@@ -29,4 +29,4 @@ void loop() {
 * No needed libraries
 
 ### Connection
-![Connection basic LED light](docs/connection_basic.jpeg)
+![Connection basic LED light](../docs/connection_basic.jpeg)

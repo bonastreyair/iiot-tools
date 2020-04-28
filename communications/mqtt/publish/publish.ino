@@ -13,14 +13,14 @@ const char *MQTT_BROKER_IP = "BROKER_IP";
 const int MQTT_PORT = 1883;
 const bool RETAINED = true;
 
-WiFiClient espClient;
-PubSubClient client(espClient);
+WiFiClient wifiClient;
+PubSubClient mqttClient(wifiClient);
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
   Serial.println("");
 
-  client.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
+  mqttClient.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
 
   connectToWiFiNetwork();  // Connects to the configured network
   connectToMqttBroker();  // Connects to the configured mqtt broker
@@ -53,7 +53,7 @@ void publishIntNumber() {
 
   counter++;
 
-  client.publish(topic, String(counter).c_str(), RETAINED);
+  mqttClient.publish(topic, String(counter).c_str(), RETAINED);
   Serial.println(" <= " + String(topic) + ": " + String(counter));
 }
 
@@ -64,7 +64,7 @@ void publishFloatNumber() {
 
   counter = counter + 0.1;
 
-  client.publish(topic, String(counter).c_str(), RETAINED);
+  mqttClient.publish(topic, String(counter).c_str(), RETAINED);
   Serial.println(" <= " + String(topic) + ": " + String(counter));
 }
 
@@ -76,7 +76,7 @@ void publishString() {
   counter++;
   String text = "this is a text with dynamic numbers " + String(counter);
 
-  client.publish(topic, text.c_str(), RETAINED);
+  mqttClient.publish(topic, text.c_str(), RETAINED);
   Serial.println(" <= " + String(topic) + ": " + text);
 }
 
@@ -100,7 +100,7 @@ void publishSmallJson() {
   values2.add(4);
 
   serializeJson(doc, buffer);  // Serialize the JSON document to a buffer in order to publish it
-  client.publish(topic, buffer, RETAINED);
+  mqttClient.publish(topic, buffer, RETAINED);
   Serial.println(" <= " + String(topic) + ": " + String(buffer));
 }
 
@@ -132,7 +132,7 @@ void publishBigJson() {
   values2.add(12);
 
   size_t n = serializeJson(doc, buffer);  // Serialize the JSON document to a buffer in order to publish it
-  client.publish_P(topic, buffer, n);  // No RETAINED option
+  mqttClient.publish_P(topic, buffer, n);  // No RETAINED option
   Serial.println(" <= " + String(topic) + ": " + String(buffer));
 }
 
@@ -156,17 +156,17 @@ void connectToWiFiNetwork() {
 
 void connectToMqttBroker() {
   Serial.print("Connecting with MQTT Broker:" + String(MQTT_BROKER_IP));  // Print the broker which you want to connect
-  client.connect(macAddress);  // Using unique mac address from ESP32
-  while (!client.connected()) {
+  mqttClient.connect(macAddress);  // Using unique mac address from ESP32
+  while (!mqttClient.connected()) {
     delay(500); Serial.print("..");  // Connecting effect
-    client.connect(macAddress);  // Using unique mac address from ESP32
+    mqttClient.connect(macAddress);  // Using unique mac address from ESP32
   }
   Serial.println("..connected! (ClientID: " + String(macAddress) + ")");
 }
 
 void checkConnections() {
-  if (client.connected()) {
-    client.loop();
+  if (mqttClient.connected()) {
+    mqttClient.loop();
   } else {  // Try to reconnect
     Serial.println("Connection has been lost with MQTT Broker");
     if (WiFi.status() != WL_CONNECTED) {  // Check wifi connection

@@ -2,7 +2,7 @@
 ## Wifi - HTTP Server
 Code to create a HTTP server in your network enabling GET and PUT methods.
 
-[[Go back]](/communications)
+[[Go back]](/communications/wifi)
   
 ### [Code](http_server.ino)
 ```cpp
@@ -61,7 +61,7 @@ void print_request_info() {
     }
     Serial.println(arguments);
   } else {
-    Serial.println("No arguments\n");
+    Serial.println("No arguments");
   }
 }
 
@@ -71,8 +71,9 @@ void connectToWiFiNetwork() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500); Serial.print("..");  // Connecting effect
   }
-  Serial.print("..connected! (ip: ");  // After being connected to a network, our ESP32 should have a IP
-  Serial.println(WiFi.localIP());
+  Serial.print("..connected!  (ip: ");  // After being connected to a network, our ESP32 should have a IP
+  Serial.print(WiFi.localIP());
+  Serial.println(")");
 }
 
 void checkWiFiConnection() {
@@ -84,5 +85,22 @@ void checkWiFiConnection() {
 ```
 
 ### Libraries
-* _Wifi_ by [Arduino](https://www.arduino.cc/en/Reference/WiFi) - Installed from the Arduino IDE Library Management
-![WiFi_library](../docs/WiFi_library.png)
+- [_Wifi_](https://www.arduino.cc/en/Reference/WiFi) by Arduino - Installed from the Arduino IDE Library Management
+
+  ![WiFi_library](../docs/WiFi_library.png)
+ 
+  This library allows an Arduino board to connect to a wifi router. It can be used as either a server accepting incoming connections or as a client. Some of the functions we use are:
+  - `WiFi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status
+  - `WiFi.status()`: Return the connection status
+  - `WiFi.macAdress()`: Gets the MAC Address of your WiFi shield
+  - `WiFi.localIP()`: Gets the WiFi shield's IP address
+
+- [_WebServer_](https://www.arduino.cc/en/Tutorial/WebServer) by Arduino - Preinstalled with the Arduino IDE
+
+  This library allows to create a simple web server that helps to serve an HTTP API. Some of the functions we user are:
+  - `WebServer server(80)`: Creates the server on port 80
+  - `server.on(endpoint, handle_function)`: Creates and `endpoint` that when activated it runs the `handle_function`
+  - `server.send(code, format, payload)`: Sends standard http messages making usage of standard `code` and `format`
+  - `server.handleClient()`: Handles any new client and needs to be called continuously to catch any new request
+
+[[Go back]](/communications/wifi)

@@ -11,7 +11,7 @@ It tries to resolve many common questions:
 
 [[Go back]](/system)
 
-### Code
+### [Code](multi-tasks.ino)
 ```cpp
 #define CORE0 0  // ESP32 first core
 #define CORE1 1  // ESP32 second core
@@ -21,8 +21,8 @@ It tries to resolve many common questions:
 // Parameters structure for FreeRTOS tasks
 typedef struct {
   int delayTime = 1000;  // default value
-  char id_example[10]; // max 10 characters, no default value
-  float floatNum_example = 5.6; // default value
+  char id_example[10];  // max 10 characters, no default value
+  float floatNum_example = 5.6;  // default value
 } Parameters;
 
 TaskHandle_t task1;
@@ -68,10 +68,8 @@ void loop() {
     Serial.println("task1 has been deleted");
   }
 }
-```
 
-#### Additional functions
-```cpp
+/* Additional functions */
 void test1Task(void * pvParameters) {
   Serial.println("test1Task() running on core " + String(xPortGetCoreID()));
 

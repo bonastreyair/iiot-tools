@@ -1,17 +1,21 @@
 # Communications
 ## MQTT - Subscribe
-How to Subscribe to Mqtt topics from an ESP32.
+How to Subscribe to MQTT topics from an ESP32.
 
-[[Go back]](/communications)
+[[Go back]](/communications/mqtt)
 
 ### Hardware
-* ESP32
+- ESP32
 
 ### [Code](subscribe.ino)
 ```cpp
 #include <Wire.h>
 #include <WiFi.h>
-#include <PubSubClient.h>
+#include <PubSubClient.h>  // https://github.com/knolleary/pubsubclient
+
+// Define new subscription topics here
+#define COMMAND_TOPIC  "cmd"
+#define TEST_TOPIC     "test"
 
 // Replace the next variables with your Wi-Fi SSID/Password
 const char *WIFI_SSID = "YOUR_SSID_NAME";
@@ -24,61 +28,67 @@ const int MQTT_PORT = 1883;
 const bool RETAINED = true;
 const int QoS = 0;  // Quality of Service for the subscriptions
 
-WiFiClient espClient;
-PubSubClient client(espClient);
-
-// Topic Variables
-String cmdTopicStr;
-String newTopicStr;
+WiFiClient wifiClient;
+PubSubClient mqttClient(wifiClient);
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
   Serial.println("");
 
-  client.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
-  client.setCallback(callback);  // Prepare what to do when a message is recieved
+  mqttClient.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
+  mqttClient.setCallback(callback);  // Prepare what to do when a message is recieved
 
   connectToWiFiNetwork();  // Connects to the configured network
   connectToMqttBroker();  // Connects to the configured mqtt broker
-  setSubscriptions();  // Subscribes to configured topics
+  setSubscriptions();  // Subscribe defined topics
 }
 
 void loop() {
-  checkConnections();
+  checkConnections();  // We check the connection every time
 }
 
 /* Additional functions */
 void setSubscriptions() {
-  cmdTopicStr = String(macAddress) + String("/cmd");
-  const char* cmdTopic = cmdTopicStr.c_str();
-  client.subscribe(cmdTopic, QoS);
-  Serial.println("Client MQTT subscribed to topic: " + cmdTopicStr + " (QoS:" + String(QoS) + ")");
-
-  newTopicStr = String(macAddress) + String("/test");
-  const char* newTopic = newTopicStr.c_str();
-  client.subscribe(newTopic, QoS);
-  Serial.println("Client MQTT subscribed to topic: " + newTopicStr + " (QoS:" + String(QoS) + ")");
+  subscribe(COMMAND_TOPIC);
+  subscribe(TEST_TOPIC);
 }
 
-void callback(char* topic, byte* message, unsigned int length) {
-  String msg = unwrap(message, length);
-  Serial.println(String(topic) + ": " + msg);
+void subscribe(char* newTopic) {
+  const String topicStr = createTopic(newTopic);
+  const char* topic = topicStr.c_str();
+  mqttClient.subscribe(topic, QoS);
+  Serial.println("Client MQTT subscribed to topic: " + topicStr + " (QoS:" + String(QoS) + ")");
+}
 
+void callback(char* topic, byte* payload, unsigned int length) {
+  // Register all subscription topics
+  static const String cmdTopicStr = createTopic(COMMAND_TOPIC);
+  static const String testTopicStr = createTopic(TEST_TOPIC);
+
+  String msg = unwrapMessage(payload, length);
+  Serial.println(" => " + String(topic) + ": " + msg);
+
+  // What to do in each topic case?
   if (String(topic) == cmdTopicStr) {
     // Do some command
-  } else if (String(topic) == newTopicStr) {
+  } else if (String(topic) == testTopicStr) {
     // Do some other stuff
   } else {
     Serial.println("[WARN] - '" + String(topic) + "' topic was correctly subscribed but not defined in the callback function");
   }
 }
 
-String unwrap(byte* message, unsigned int length) {
+String unwrapMessage(byte* message, unsigned int length) {
   String msg;
   for (int i = 0; i < length; i++) {  // Unwraps the string message
     msg += (char)message[i];
   }
   return msg;
+}
+
+String createTopic(char* topic) {
+  String topicStr = String(macAddress) + "/" + topic;
+  return topicStr;
 }
 
 void connectToWiFiNetwork() {
@@ -87,26 +97,26 @@ void connectToWiFiNetwork() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500); Serial.print("..");  // Connecting effect
   }
-  Serial.print("..connected! (ip: ");  // After being connected to a network, our ESP32 should have a IP
-  Serial.println(WiFi.localIP());
+  Serial.print("..connected!  (ip: ");  // After being connected to a network, our ESP32 should have a IP
+  Serial.print(WiFi.localIP());
+  Serial.println(")");
   String macAddressStr = WiFi.macAddress().c_str();
   strcpy(macAddress, macAddressStr.c_str());
 }
 
-
 void connectToMqttBroker() {
   Serial.print("Connecting with MQTT Broker: " + String(MQTT_BROKER_IP));  // Print the broker which you want to connect
-  client.connect(macAddress);  // Using unique mac address from ESP32
-  while (!client.connected()) {
+  mqttClient.connect(macAddress);  // Using unique mac address from ESP32
+  while (!mqttClient.connected()) {
     delay(500); Serial.print("..");  // Connecting effect
-    client.connect(macAddress);  // Using unique mac address from ESP32
+    mqttClient.connect(macAddress);  // Using unique mac address from ESP32
   }
   Serial.println("..connected! (ClientID: " + String(macAddress) + ")");
 }
 
 void checkConnections() {
-  if (client.connected()) {
-    client.loop();
+  if (mqttClient.connected()) {
+    mqttClient.loop();
   } else {  // Try to reconnect
     Serial.println("Connection has been lost with MQTT Broker");
     if (WiFi.status() != WL_CONNECTED) {  // Check wifi connection
@@ -114,45 +124,50 @@ void checkConnections() {
       connectToWiFiNetwork();  // Reconnect Wifi
     }
     connectToMqttBroker();  // Reconnect Server MQTT Broker
-    setMqttSubscriptions();  // Subscribes to configured topics
+    setSubscriptions();  // Subscribes to configured topics
   }
 }
 ```
 
 ### Functionality explanation
+Now that we know what [MQTT](../README.md) is, with this code we can subscribe and create a callback function when we recieve message from different topics
 
-Now that we know what [MQTT](../README.md) is, with this code we can subscribe and create a callback function when we recieve message  from different topics
-
-* Subscribe to different topics:
+#### How to subscribe to a topics? 
 ```cpp
-void setSubscriptions() {
-  cmdTopicStr = String(macAddress) + String("/cmd");
-  const char* cmdTopic = cmdTopicStr.c_str();
-  client.subscribe(cmdTopic, QoS);
-  Serial.println("Client MQTT subscribed to topic: " + cmdTopicStr + " (QoS:" + String(QoS) + ")");
+void subscribe(char* newTopic) {
+  const String topicStr = createTopic(newTopic);
+  const char* topic = topicStr.c_str();
+  mqttClient.subscribe(topic, QoS);
+  Serial.println("Client MQTT subscribed to topic: " + topicStr + " (QoS:" + String(QoS) + ")");
+}
 
-  newTopicStr = String(macAddress) + String("/test");
-  const char* newTopic = newTopicStr.c_str();
-  client.subscribe(newTopic, QoS);
-  Serial.println("Client MQTT subscribed to topic: " + newTopicStr + " (QoS:" + String(QoS) + ")");
+String createTopic(char* topic) {
+  String topicStr = String(macAddress) + "/" + topic;
+  return topicStr;
 }
 ```
-* Define a callback function and define some stuff to do when recieve a message in any topic:
-```cpp
-void callback(char* topic, byte* message, unsigned int length) {
-  String msg = unwrap(message, length);
-  Serial.println(String(topic) + ": " + msg);
 
+#### Where do the subscriptions arrive?
+```cpp
+void callback(char* topic, byte* payload, unsigned int length) {
+  // Register all subscription topics
+  static const String cmdTopicStr = createTopic(COMMAND_TOPIC);
+  static const String testTopicStr = createTopic(TEST_TOPIC);
+
+  String msg = unwrapMessage(payload, length);
+  Serial.println(" => " + String(topic) + ": " + msg);
+
+  // What to do in each topic case?
   if (String(topic) == cmdTopicStr) {
     // Do some command
-  } else if (String(topic) == newTopicStr) {
+  } else if (String(topic) == testTopicStr) {
     // Do some other stuff
   } else {
     Serial.println("[WARN] - '" + String(topic) + "' topic was correctly subscribed but not defined in the callback function");
   }
 }
 
-String unwrap(byte* message, unsigned int length) {
+String unwrapMessage(byte* message, unsigned int length) {
   String msg;
   for (int i = 0; i < length; i++) {  // Unwraps the string message
     msg += (char)message[i];
@@ -162,37 +177,31 @@ String unwrap(byte* message, unsigned int length) {
 ```
 
 ### Libraries
-* **Wire** --> Standard in the Arduino libraries folder.
-
+- [_Wire_](https://www.arduino.cc/en/reference/wire) by Arduino - Preinstalled with the Arduino IDE
+  
   This library allows you to communicate with I2C / TWI devices.
-    - For more [info](https://www.arduino.cc/en/reference/wire)
-  
-* **Wifi** --> Standard in the Arduino libraries folder.
-  
-  This library allows an Arduino board to connect to the internet. It can serve as either a server accepting incoming connections or a client making outgoing ones. 
-  
-    - For more [info](https://www.arduino.cc/en/Reference/WiFi)
-  
-  In the code we use:
-    - `WifiClient WifiClientName`: Creates a client that can connect to to a specified internet IP address and port. (We will use for the MQTT Broker connection)
-    - `WiFi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status.
-    - `WiFi.status()`: Return the connection status. 
-    - `WiFi.macAdress()`: Gets the MAC Address of your WiFi shield
-    - `WiFi.localIP()`: Gets the WiFi shield's IP address
- 
-* **PubSubClient** 
 
-  To install this library we must go to `Tools > Library Manager`, and search for `PubSubClient` by _Nick O'Leary_, and click `Install`:
+- [_Wifi_](https://www.arduino.cc/en/Reference/WiFi) by Arduino - Installed from the Arduino IDE Library Management
+
+  ![WiFi_library](../docs/WiFi_library.png)
+ 
+  This library allows an Arduino board to connect to a wifi router. It can be used as either a server accepting incoming connections or as a client. Some of the functions we use are:
+  - `WifiClient wifiClient`: Creates a client that can connect to to a specified internet IP address and port. (We will use for the MQTT Broker connection)
+  - `WiFi.begin(WIFI_SSID, WIFI_PASSWORD)`: Initializes the WiFi library's network settings and provides the current status
+  - `WiFi.status()`: Return the connection status
+  - `WiFi.macAdress()`: Gets the MAC Address of your WiFi shield
+  - `WiFi.localIP()`: Gets the WiFi shield's IP address
+ 
+- [_PubSubClient_](https://pubsubclient.knolleary.net/api.html) by Nick O'Leary - Installed from the Arduino IDE Library
+
   ![PubSubClient](../publish/docs/PUB1.png)
   
-  This library provides a client for doing simple publish/subscribe messaging with a server that supports MQTT.
-   - For more [info](https://pubsubclient.knolleary.net/api.html)
-   
-  In the code we use:
-   - `PubSubClient MQTTClientName(WifiClientName)`: Creates a partially initialised client instance. 
-   - `MQTTClientName.setServer(MQTT_BROKER_IP, MQTT_PORT)`:  Sets the server details.
-   - `MQTTClientName.connect(ClientID)`: Connects the client. In our case we use the MacAdress as clientID.
-   - `MQTTClientName.connected()`: Checks whether the client is connected to the server (false, true).
-   - `MQTTClientName.loop()`: This should be called regularly to allow the client to process incoming messages and maintain its connection to the server (false, true).
-   - `MQTTClientName.subscribe(topic, QoS)`: Subscribes to messages published to the specified topic.
+  This library provides a client for doing simple publish/subscribe messaging with a server that supports MQTT. Some of the functions we use are:
+  - `PubSubClient mqttClient(wifiClient)`: Creates a partially initialised client instance.
+  - `mqttClient.setServer(MQTT_BROKER_IP, MQTT_PORT)`:  Sets the server details
+  - `mqttClient.connect(clientID)`: Connects the client. In our case we use the macAdress as the clientID
+  - `mqttClient.connected()`: Checks whether the client is connected to the server (`false`, `true`)
+  - `mqttClient.loop()`: This should be called regularly to allow the client to process incoming messages and maintain its connection to the server (`false`, `true`)
+  - `mqttClient.subscribe(topic, QoS)`: Subscribes to messages published to the specified topic with a Quality of Service
 
+[[Go back]](/communications/mqtt)

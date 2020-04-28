@@ -6,8 +6,8 @@
 // Parameters structure for FreeRTOS tasks
 typedef struct {
   int delayTime = 1000;  // default value
-  char id_example[10]; // max 10 characters, no default value
-  float floatNum_example = 5.6; // default value
+  char id_example[10];  // max 10 characters, no default value
+  float floatNum_example = 5.6;  // default value
 } Parameters;
 
 TaskHandle_t task1;

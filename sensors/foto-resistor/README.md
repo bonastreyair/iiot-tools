@@ -1,12 +1,12 @@
 # Sensor
 ## Fotoresistor
-Using the foto-reisitor to measure luminosity.
+Using the foto-resistor to measure luminosity.
 
 [[Go back]](/sensors)
 
 ### Hardware
-* ESP32
-* [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [KTH Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)
+- ESP32
+- [Foto-resistor](docs/datasheet_fotoresistor.pdf) - [KTH Source](https://www.kth.se/social/files/54ef17dbf27654753f437c56/GL5537.pdf)
 
 ### [Code](foto-resistor.ino)
 ```cpp
@@ -37,7 +37,9 @@ void loop(){
 ```
 
 ### Libraries
-* No needed libraries
+- No needed libraries
 
 ### Connection
 ![Connection image](docs/fotoresistor.png)
+
+[[Go back]](/sensors)
