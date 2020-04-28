@@ -1,18 +1,3 @@
-# System
-## Multi Tasks
-This example explains the common usage of tasks with the ESP32 thanks to [FreeRTOS](https://www.freertos.org/).
-
-It tries to resolve many common questions:
- - How to start a task?
- - How to start a task with a specific core?
- - How to use a `struct` for parameters when starting a task?
- - How to set a specific priority for a task?
- - How to delete a task?
-
-[[Go back]](/system)
-
-### Code
-```cpp
 #define CORE0 0  // ESP32 first core
 #define CORE1 1  // ESP32 second core
 #define TASK_STACK_SIZE 10000  // in bytes
@@ -68,10 +53,8 @@ void loop() {
     Serial.println("task1 has been deleted");
   }
 }
-```
 
-#### Additional functions
-```cpp
+/* Additional functions */
 void test1Task(void * pvParameters) {
   Serial.println("test1Task() running on core " + String(xPortGetCoreID()));
 
@@ -92,7 +75,3 @@ void test2Task(void *pvParameters) {
     params->delayTime = params->delayTime + 100;
   }
 }
-```
-
-### Libraries
-* _Standard ESP32 Library_ - FreeRTOS [Espressif](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html)  - Preinstalled with ESP32 Board in Arduino IDE
