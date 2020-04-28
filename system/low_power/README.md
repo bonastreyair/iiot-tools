@@ -10,7 +10,7 @@ It tries to answare some common questions:
 [[Go back]](/system)
 
 ### Hardware
-* ESP32
+- ESP32
 
 ### [Code](low_power.ino)
 ```cpp
@@ -20,6 +20,7 @@ RTC_DATA_ATTR int bootCount = 0;  // Data that will be stored during deep sleep 
 
 void setup(){
   Serial.begin(9600);  // Starts the serial communication
+  Serial.println("\nBooting device...");
 
   print_wakeup_reason();  // Print the wakeup reason for ESP32
 
@@ -80,4 +81,8 @@ void print_wakeup_reason(){
 ```
 
 ### Libraries
-* _Standard ESP32 Library_ - Sleep Modes [Espressif](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/sleep_modes.html)  - Preinstalled with ESP32 Board in Arduino IDE
+- [_Standard ESP32 Library_](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html) by Espressif - Installed with ESP32 Board in Arduino IDE
+
+  Library which includes a tuned FreeRTOS designed for ESP32
+
+[[Go back]](/system)

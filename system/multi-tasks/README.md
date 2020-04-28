@@ -11,6 +11,9 @@ It tries to resolve many common questions:
 
 [[Go back]](/system)
 
+### Hardware
+- ESP32
+
 ### [Code](multi-tasks.ino)
 ```cpp
 #define CORE0 0  // ESP32 first core
@@ -30,7 +33,8 @@ TaskHandle_t task2;
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("\nsetup() running on core " + String(xPortGetCoreID()));
+  Serial.println("\nBooting device...");
+  Serial.println("setup() running on core " + String(xPortGetCoreID()));
 
   // Create a task that will execute test1Task() function, with no parameters, with default priority on any core available core
   xTaskCreate(
@@ -93,4 +97,8 @@ void test2Task(void *pvParameters) {
 ```
 
 ### Libraries
-* _Standard ESP32 Library_ - FreeRTOS [Espressif](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html)  - Preinstalled with ESP32 Board in Arduino IDE
+- [_Standard ESP32 Library_](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/freertos.html) by Espressif - Installed with ESP32 Board in Arduino IDE
+
+  Library which includes a tuned FreeRTOS designed for ESP32
+
+[[Go back]](/system)

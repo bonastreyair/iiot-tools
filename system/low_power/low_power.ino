@@ -4,6 +4,7 @@ RTC_DATA_ATTR int bootCount = 0;  // Data that will be stored during deep sleep 
 
 void setup(){
   Serial.begin(9600);  // Starts the serial communication
+  Serial.println("\nBooting device...");
 
   print_wakeup_reason();  // Print the wakeup reason for ESP32
 

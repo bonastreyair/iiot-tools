@@ -15,7 +15,8 @@ TaskHandle_t task2;
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("\nsetup() running on core " + String(xPortGetCoreID()));
+  Serial.println("\nBooting device...");
+  Serial.println("setup() running on core " + String(xPortGetCoreID()));
 
   // Create a task that will execute test1Task() function, with no parameters, with default priority on any core available core
   xTaskCreate(
