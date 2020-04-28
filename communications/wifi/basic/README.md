@@ -3,6 +3,9 @@
 Code to scan the surrounding networks and connect with one.
 
 [[Go back]](/communications/wifi)
+
+### Hardware
+- ESP32
 	
 ### [Code](basic.ino)
 ```cpp
@@ -14,7 +17,8 @@ const char *WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
-
+  Serial.println("\nBooting device...");
+  
   scanWiFiNetworks();  // Check nearby networks
   connectToWiFiNetwork();  // Connect the configured network
   Serial.print("Device IP: ");  // After being connected to a network, our ESP32 should have a IP

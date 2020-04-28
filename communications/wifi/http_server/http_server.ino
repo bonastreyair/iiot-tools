@@ -9,7 +9,8 @@ WebServer server(80);  // Creates server on standard port 80
 
 void setup() {
   Serial.begin(9600); // Starts the serial communication
-
+  Serial.println("\nBooting device...");
+  
   connectToWiFiNetwork();  // Connect the configured network
 
   // Define active server endpoints

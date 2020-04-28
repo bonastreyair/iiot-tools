@@ -10,11 +10,12 @@ IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 
 void setup() {
-	Serial.begin(9600);  // Starts the serial communication
+  Serial.begin(9600);  // Starts the serial communication
+  Serial.println("\nBooting device...");
 
-	WiFi.softAP(WIFI_SSID, WIFI_PASSWORD);
-	WiFi.softAPConfig(local_ip, gateway, subnet);
-	Serial.println("ESP32 is now a router WiFi and it is now active");
+  WiFi.softAP(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.softAPConfig(local_ip, gateway, subnet);
+  Serial.println("ESP32 is now a router WiFi and it is now active");
 }
 
 void loop() {

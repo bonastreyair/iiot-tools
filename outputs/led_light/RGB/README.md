@@ -5,9 +5,9 @@ Using an RGB LED.
 [[Go back]](/outputs/led_light)
 
 ### Hardware
-* ESP32
-* [RGB LED](../docs/RGB.jpg)
-* Resistor - 330 Ohm
+- ESP32
+- [RGB LED](../docs/RGB.jpg)
+- Resistor - 330 Ohm
 
 ### [Code](RGB.ino)
 ```cpp
@@ -17,6 +17,8 @@ Using an RGB LED.
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("\nBooting device...");
+  
   pinMode(RED_PIN, OUTPUT);  // Pinout as output
   pinMode(RED_PIN, OUTPUT);  // Pinout as output
   pinMode(RED_PIN, OUTPUT);  // Pinout as output
@@ -58,7 +60,9 @@ void setColor(char color) {
 ```
 
 ### Libraries
-* No needed libraries
+- No needed libraries
 
 ### Connection
 ![Connection RGB LED light](../docs/connection_RGB.png)
+
+[[Go back]](/outputs/led_light)

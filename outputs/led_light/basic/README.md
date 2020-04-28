@@ -5,8 +5,8 @@ Using a basic LED Light.
 [[Go back]](/outputs/led_light)
 
 ### Hardware
-* ESP32
-* [Simple LED](../docs/basic.png)
+- ESP32
+- [Simple LED](../docs/basic.png)
 
 ### [Code](basic.ino)
 ```cpp
@@ -14,6 +14,8 @@ Using a basic LED Light.
 
 void setup() {
   Serial.begin(9600); 
+  Serial.println("\nBooting device...");
+  
   pinMode(LED_PIN, OUTPUT);  // Pinout as output
 }
 
@@ -26,7 +28,9 @@ void loop() {
 ```
 
 ### Libraries
-* No needed libraries
+- No needed libraries
 
 ### Connection
 ![Connection basic LED light](../docs/connection_basic.jpeg)
+
+[[Go back]](/outputs/led_light)

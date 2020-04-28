@@ -2,6 +2,8 @@
 
 void setup() {
   Serial.begin(9600); 
+  Serial.println("\nBooting device...");
+  
   pinMode(LED_PIN, OUTPUT);  // Pinout as output
 }
 

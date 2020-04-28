@@ -22,7 +22,7 @@ PubSubClient mqttClient(wifiClient);
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
-  Serial.println("");
+  Serial.println("\nBooting device...");
 
   mqttClient.setServer(MQTT_BROKER_IP, MQTT_PORT);  // Connect the configured mqtt broker
   mqttClient.setCallback(callback);  // Prepare what to do when a message is recieved

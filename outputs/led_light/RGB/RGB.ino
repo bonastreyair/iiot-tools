@@ -4,6 +4,8 @@
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("\nBooting device...");
+  
   pinMode(RED_PIN, OUTPUT);  // Pinout as output
   pinMode(RED_PIN, OUTPUT);  // Pinout as output
   pinMode(RED_PIN, OUTPUT);  // Pinout as output

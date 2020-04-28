@@ -2,11 +2,11 @@
 ## OLED Screen - SDD1306
 Enables sending text to a standard oled screen via I2C.
 
-[[Go back]](/outputs)
+[[Go back]](/outputs/oled_screen)
 
 ### Hardware
-* ESP32
-* OLED Screen
+- ESP32
+- OLED Screen
 
 ### [Code](SDD1306.ino)
 ```cpp
@@ -19,8 +19,6 @@ Enables sending text to a standard oled screen via I2C.
 #define OLED_I2C_ADDR  0x3c
 
 SSD1306 display(OLED_I2C_ADDR, OLED_SDA, OLED_SCL);  // Defines "display" variable
-
-int upTime = 0;  // Defines a counter
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
@@ -41,6 +39,7 @@ void setup() {
 }
 
 void loop() {
+  static int upTime = 0;  // Defines a counter
   upTime++;  // Adds +1 to variable "upTime"
   Serial.println("Uptime: " + String(upTime) + "s");
 
@@ -56,6 +55,12 @@ void loop() {
 ```
 
 ### Libraries
-* _Wire_ by [Arduino](https://www.arduino.cc/en/reference/wire) - Preinstalled with Arduino IDE
-* _SSD1306_ by ThingPulse, Fabrice Weinberg [Github](https://github.com/ThingPulse/esp8266-oled-ssd1306) - Installed from the Arduino IDE Library Management
-![SSD1306](../docs/SSD1306_installation.jpeg)
+- [_Wire_](https://www.arduino.cc/en/reference/wire) by Arduino - Preinstalled with the Arduino IDE
+  
+  This library allows you to communicate with I2C / TWI devices.
+
+- [_SSD1306_](https://github.com/ThingPulse/esp8266-oled-ssd1306) by ThingPulse, Fabrice Weinberg - Installed from the Arduino IDE Library Management
+  
+  ![SSD1306](../docs/SSD1306_installation.jpeg)
+
+[[Go back]](/outputs/oled_screen)

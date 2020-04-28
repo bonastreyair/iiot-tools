@@ -8,8 +8,6 @@
 
 SSD1306 display(OLED_I2C_ADDR, OLED_SDA, OLED_SCL);  // Defines "display" variable
 
-int upTime = 0;  // Defines a counter
-
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
   Serial.println("\nBooting device...");
@@ -29,6 +27,7 @@ void setup() {
 }
 
 void loop() {
+  static int upTime = 0;  // Defines a counter
   upTime++;  // Adds +1 to variable "upTime"
   Serial.println("Uptime: " + String(upTime) + "s");
 

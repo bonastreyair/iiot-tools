@@ -6,6 +6,7 @@ const char *WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 
 void setup() {
   Serial.begin(9600);  // Starts the serial communication
+  Serial.println("\nBooting device...");
 
   scanWiFiNetworks();  // Check nearby networks
   connectToWiFiNetwork();  // Connect the configured network
