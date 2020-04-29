@@ -1,6 +1,19 @@
-#define RED_PIN   3
-#define GREEN_PIN 4
-#define BLUE_PIN  5
+# Outputs
+## LED Light - RGB
+Using an RGB LED. 
+
+[[Go back]](/outputs/led_light)
+
+### Hardware
+- ESP32
+- [RGB LED](../docs/RGB.jpg)
+- Resistor - 330 Ohm
+
+### [Code](RGB.ino)
+```cpp
+#define RED_PIN   5
+#define GREEN_PIN 3
+#define BLUE_PIN  4
 
 void setup() {
   Serial.begin(9600);
@@ -44,3 +57,12 @@ void setColor(char color) {
     setRGB(0, 0, 0);
   }
 }
+```
+
+### Libraries
+- No needed libraries
+
+### Connection
+![Connection RGB LED light](../docs/connection_RGB.png)
+
+[[Go back]](/outputs/led_light)

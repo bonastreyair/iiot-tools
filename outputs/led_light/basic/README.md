@@ -1,3 +1,15 @@
+# Outputs
+## LED Light - Basic
+Using a basic LED Light.
+
+[[Go back]](/outputs/led_light)
+
+### Hardware
+- ESP32
+- [Simple LED](../docs/basic.png)
+
+### [Code](basic.ino)
+```cpp
 #define LED_PIN 3
 
 void setup() {
@@ -13,3 +25,12 @@ void loop() {
   digitalWrite(LED_PIN, LOW);  // Set pin to LOW
   delay(1000);  // Wait 1 second
 }
+```
+
+### Libraries
+- No needed libraries
+
+### Connection
+![Connection basic LED light](../docs/connection_basic.jpeg)
+
+[[Go back]](/outputs/led_light)

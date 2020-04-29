@@ -1,3 +1,15 @@
+# Sensors
+## GPS - Complex
+This example uses a library to translate the GPS protocol for easy implementation.
+
+[[Go back]](/sensors/gps)
+
+### Hardware
+- ESP32
+- [GPS](../docs/gep-neo-6.pdf) - [terraelectronica Source](https://www.terraelectronica.ru/pdf/show?pdf_file=%2Fz%2FDatasheet%2FU%2FUART+GPS+NEO-6M+User+Manual.pdf)
+
+### [Code](complex.ino)
+```cpp
 #include <SoftwareSerial.h>
 #include <TinyGPS.h>
 
@@ -51,3 +63,18 @@ void loop() {
   Serial.print(" CSUM ERR=");
   Serial.println(failed);
 }
+```
+
+### Libraries
+- [_SoftwareSerial_](https://github.com/plerup/espsoftwareserial/) by Peter Lerup and Dirk Kaar - Installed from GitHub
+
+  ![SoftwareSerial_library](../docs/SoftwareSerial_library.png)
+
+- [_TinyGPS_](https://github.com/neosarchizo/TinyGPS) by Mikal Hart - Installed from GitHub
+
+   ![TinyGPS_library](../docs/TinyGPS_library.png)
+
+### Connection
+![Connection gps image](../docs/gps-neo-6.png)
+
+[[Go back]](/sensors/gps)

@@ -1,7 +1,13 @@
 # Communications
-## MQTT
-What is MQTT?
+## [MQTT](/communications/mqtt)
+| | Description | Code | Docs |
+|-|:------------|:----:|:----:|
+|[Publish](/communications/mqtt/publish) |How publish a string or a json using `MQTT` protocols over `WiFi`? |[:white_check_mark:](/communications/mqtt/publish/publish.ino)|[:white_check_mark:](/communications/mqtt/publish/README.md)| 
+|[Subscribe](/communications/mqtt/subscribe) |How subscribe to a topic and recieve information from a `MQTT Broker` over `WiFi`? |[:white_check_mark:](/communications/mqtt/subscribe/subscribe.ino)|[:white_check_mark:](/communications/mqtt/subscribe/README.md)| 
 
+[[Go back]](/communications)
+
+## What is MQTT?
 MQTT is a simple messaging protocol, designed for constrained devices with low-bandwidth. So, it’s the perfect solution for Internet of Things applications. MQTT allows you to send commands to control outputs, read and publish data from sensor nodes and much more.
 
 ![Intro](docs/MQTT1.jpg)
@@ -46,12 +52,11 @@ If you would like to turn on a lamp in your home office using MQTT you can imagi
 
 ![Topics3](docs/MQTT6.png)
 
-- You have a device that publishes “on” and “off” messages on the home/office/lamp topic.
-- You have a device that controls a lamp (it can be an ESP32, ESP8266, or any other board). The ESP32 that controls your lamp, is subscribed to that topic: home/office/lamp.
-- So, when a new message is published on that topic, the ESP32 receives the “on” or “off” message and turns the lamp on or off.
+- You have a device that publishes “on” and “off” messages on the `home/office/lamp` topic.
+- You have a device that controls a lamp (it can be an `ESP32`, `ESP8266`, or any other board). The ESP32 that controls your lamp, is subscribed to that topic: `home/office/lamp`.
+- So, when a new message is published on that topic, the `ESP32` receives the “on” or “off” message and turns the lamp on or off.
 
 ### Broker
-
 The broker is primarily responsible for receiving all messages, filtering the messages, decide who is interested in them and then publishing the message to all subscribed clients.
 
 ![Broker](docs/MQTT7.png)
@@ -60,7 +65,8 @@ There are several brokers you can use, but one easy way to do it is by using the
 
 - [Aedes Broker](https://flows.nodered.org/node/node-red-contrib-aedes)
 
-To install this broker node in Node-Red: 
+To install this broker node in Node-Red:
+
   1. Search "contrib-aedes" in the Manage Palette
   
   ![contrib-aedes](docs/MQTT8.png)
@@ -71,7 +77,7 @@ To install this broker node in Node-Red:
   
   ![contrib-aedes](docs/MQTT9.png)
   
-  * the broker IP will be the IP of he device where the Node-Red is running
+  - the broker IP will be the IP of he device where the Node-Red is running
 
 ## Our implementation
 We will divide this functionality into: 

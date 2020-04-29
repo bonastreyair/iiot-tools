@@ -1,3 +1,16 @@
+# Sensors
+## Temperature 
+Using DHT11/DHT22 digital sensors we can measure the air temperature
+
+[[Go back]](/sensors/temperature)
+
+### Hardware
+- ESP32
+- [DHT11](../docs/datasheet_dht11.pdf) - [DFRobot Source](https://image.dfrobot.com/image/data/KIT0003/DHT11%20datasheet.pdf)
+- [DHT22](../docs/datasheet_dht22.pdf) - [SparkFun Source](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf)
+
+### [Code](DHT.ino)
+```cpp
 #include "DHT.h"  // Include DHT library
 
 #define DHT_PIN  21  // Defines pin number to which the sensor is connected 
@@ -19,3 +32,11 @@ void loop() {
 
   delay(1000);  // Freezes the loop for 1000 milliseconds
 }
+```
+
+### Libraries
+- [_DHT sensor library_](https://github.com/adafruit/DHT-sensor-library) by Adafruit - Installed from the Arduino IDE Library Management
+  
+  ![dht_library](../docs/dht_installation.png)
+
+[[Go back]](/sensors/temperature)
