@@ -1,8 +1,8 @@
 # Sensors
-## Electricity Current
+## Electricity Current - PZEM004T
 An electronic board `PZEM004T` version 3.0 but we added libraries of version 1.0 and 3.0. You will need to buy `LM358` if you work with Arduino or `ESP32`.
 
-[[Go back]](/sensors)
+[[Go back]](/sensors/electricity_current)
 
 ### Hardware
 - ESP32
@@ -11,18 +11,17 @@ An electronic board `PZEM004T` version 3.0 but we added libraries of version 1.0
 
 ### [Code](PZEM004Tv30.ino)
 ```cpp
-#include <PZEM004Tv30.h>
 #include <SoftwareSerial.h>
+#include <PZEM004Tv30.h>
 
-/* Use software serial for the PZEM
-  Pin 17 Rx (Connects to the Tx pin on the PZEM)
-  Pin 16 Tx (Connects to the Rx pin on the PZEM)
-*/
+// Pin 17 Rx (Connects to the Tx pin on the PZEM)
+// Pin 16 Tx (Connects to the Rx pin on the PZEM)
 
 PZEM004Tv30 pzem(&Serial2, 1);
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("\nBooting device...");
 }
 
 void loop() {
@@ -68,14 +67,16 @@ void loop() {
 ```
 
 ### Libraries
-- _SoftwareSerial_ by Peter Lerup and Dirk Kaar [GitHub](https://github.com/plerup/espsoftwareserial/) - Installed from GitHub
-![SoftwareSerial_library](../docs/SoftwareSerial_library.png)
-- [_PZEM-004T-V30_](../docsPZEM004Tv30/PZEM-004T-v30.zip) by mandulaj [GitHub](https://github.com/mandulaj/PZEM-004T-v30) - Installed from GitHub
-- [_PZEM-004T_](../docsPZEM004Tv30/PZEM-004T.zip) by olehs [GitHub](https://github.com/olehs/PZEM004T) - Installed from GitHub
+- [_SoftwareSerial_](https://github.com/plerup/espsoftwareserial/) by Peter Lerup and Dirk Kaar - Installed from GitHub
+
+  ![SoftwareSerial_library](../docs/SoftwareSerial_library.png)
+
+- [_PZEM-004T-V30_](https://github.com/mandulaj/PZEM-004T-v30) by mandulaj - Installed from GitHub
+- [_PZEM-004T_](https://github.com/olehs/PZEM004T) by olehs - Installed from GitHub
 
 ### Connection
 ![Connection PZEM-004Tv30](../docs/PZEM-004Tv30.jpg)
 ![Connection internal LM358](../docs/LM358.jfif)
 ![Connection external LM358](../docs/LM358_OA.jpg)
 
-[[Go back]](/sensors)
+[[Go back]](/sensors/electricity_current)

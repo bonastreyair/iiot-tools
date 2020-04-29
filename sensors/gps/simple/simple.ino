@@ -1,18 +1,19 @@
 #include <SoftwareSerial.h>
 
-const int Rx = 4;  // Pinout Rx of ESP32
-const int Tx = 3;  // Pinout Tx of ESP32
+#define RX_PIN 4  // Pinout Rx of ESP32
+#define TX_PIN 3  // Pinout Tx of ESP32
 
-SoftwareSerial Serialgps(Rx, Tx);
+SoftwareSerial Serialgps(RX_PIN, TX_PIN);
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("\nBooting device...");
   Serialgps.begin(9600);  // Starts gps communication with UART
 }
 
 void loop() {  // Trying read new message for one second
   for (unsigned long start = millis(); millis() - start < 1000;) {
-    if (Serialgps.available()) { // If there is a good signal
+    if (Serialgps.available()) {  // If there is a good signal
       char data;
       data = Serialgps.read();
       Serial.print(data);

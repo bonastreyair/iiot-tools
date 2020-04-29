@@ -1,15 +1,14 @@
-#include <PZEM004Tv30.h>
 #include <SoftwareSerial.h>
+#include <PZEM004Tv30.h>
 
-/* Use software serial for the PZEM
-  Pin 17 Rx (Connects to the Tx pin on the PZEM)
-  Pin 16 Tx (Connects to the Rx pin on the PZEM)
-*/
+// Pin 17 Rx (Connects to the Tx pin on the PZEM)
+// Pin 16 Tx (Connects to the Rx pin on the PZEM)
 
 PZEM004Tv30 pzem(&Serial2, 1);
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("\nBooting device...");
 }
 
 void loop() {
