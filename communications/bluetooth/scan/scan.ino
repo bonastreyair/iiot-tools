@@ -30,22 +30,22 @@ void setup() {
   BLEDevice::init(""); //we initiate the BLEDevice class object
   pBLEScan = BLEDevice::getScan(); //asking the BLEDevice for scanning, with the getScan() function, 
                                     //we are returning the scan object and saving it in pBLEScan
-  pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks()); //when a Device is found we will 
+  (*pBLEScan).setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks()); //when a Device is found we will 
                                                                        //call the class function above (MyAdvertisedDeviceCallbacks())
-  pBLEScan->setActiveScan(true); //active scan uses more power, but get results faster
-  pBLEScan->setInterval(100); //Scan interval. This is defined as the time interval from when the 
+  (*pBLEScan).setActiveScan(true); //active scan uses more power, but get results faster
+  (*pBLEScan).setInterval(100); //Scan interval. This is defined as the time interval from when the 
                               //Controller started its last LE scan until it begins the subsequent LE scan. 
-  pBLEScan->setWindow(99);  // Scan window. The duration of the LE scan. LE_Scan_Window shall be less than 
+  (*pBLEScan).setWindow(99);  // Scan window. The duration of the LE scan. LE_Scan_Window shall be less than 
                             //or equal to LE_Scan_Interval
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  BLEScanResults foundDevices = pBLEScan->start(scanTime, false);//as a return we get a BLEScanResults class object 
+  BLEScanResults foundDevices = (*pBLEScan).start(scanTime, false);//as a return we get a BLEScanResults class object 
                                                                   //which contains all the devices found
   Serial.print("Devices found: ");
   Serial.println(foundDevices.getCount());//counting the number of devices found between this 5 seconds, by calling getCount()
   Serial.println("Scan done!");
-  pBLEScan->clearResults();   // delete results fromBLEScan buffer to release memory
+  (*pBLEScan).clearResults();   // delete results fromBLEScan buffer to release memory
   delay(2000);
 }

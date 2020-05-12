@@ -20,21 +20,21 @@ void setup() {
 
   BLEDevice::init("My ESP32");//Device Local Name
   BLEServer *pServer = BLEDevice::createServer();
-  BLEService *pService = pServer->createService(SERVICE_UUID);
-  BLECharacteristic *pCharacteristic = pService->createCharacteristic(
+  BLEService *pService = (*pServer).createService(SERVICE_UUID);
+  BLECharacteristic *pCharacteristic = (*pService).createCharacteristic(
                                          CHARACTERISTIC_UUID,
                                          BLECharacteristic::PROPERTY_READ |
                                          BLECharacteristic::PROPERTY_WRITE
                                        );
 
-  pCharacteristic->setValue("Hello! This is the charactreristic");
-  pService->start();
+  (*pCharacteristic).setValue("Hello! This is the charactreristic");
+  (*pService).start();
   // BLEAdvertising *pAdvertising = pServer->getAdvertising();  // this still is working for backward compatibility
   BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
-  pAdvertising->addServiceUUID(SERVICE_UUID);
-  pAdvertising->setScanResponse(true);
-  pAdvertising->setMinPreferred(0x06);  // functions that help with iPhone connections issue
-  pAdvertising->setMinPreferred(0x12);
+  (*pAdvertising).addServiceUUID(SERVICE_UUID);
+  (*pAdvertising).setScanResponse(true);
+  (*pAdvertising).setMinPreferred(0x06);  // functions that help with iPhone connections issue
+  (*pAdvertising).setMinPreferred(0x12);
   BLEDevice::startAdvertising();
   Serial.println("Characteristic defined! Now you can read it in your phone!"); //BLE Scan APP needed
 }
