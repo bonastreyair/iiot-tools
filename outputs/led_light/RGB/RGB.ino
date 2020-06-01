@@ -1,14 +1,14 @@
-#define RED_PIN   3
+#define RED_PIN 3
 #define GREEN_PIN 4
-#define BLUE_PIN  5
+#define BLUE_PIN 5
 
 void setup() {
   Serial.begin(9600);
   Serial.println("\nBooting device...");
-  
-  pinMode(RED_PIN, OUTPUT);  // Pinout as output
-  pinMode(RED_PIN, OUTPUT);  // Pinout as output
-  pinMode(RED_PIN, OUTPUT);  // Pinout as output
+
+  pinMode(RED_PIN, OUTPUT); // Pinout as output
+  pinMode(RED_PIN, OUTPUT); // Pinout as output
+  pinMode(RED_PIN, OUTPUT); // Pinout as output
 }
 
 void loop() {
@@ -18,9 +18,9 @@ void loop() {
   delay(1000);
   setColor('white');
   delay(1000);
-  setRGB(13, 227, 201);  // Mix color
+  setRGB(13, 227, 201); // Mix color
   delay(1000);
-  setColor('black')  // Turn off
+  setColor('black'); // Turn off
   delay(1000);
 }
 

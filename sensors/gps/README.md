@@ -47,11 +47,11 @@ void loop() {
 ```
 
 ### Libraries
-- [_SoftwareSerial_](https://github.com/plerup/espsoftwareserial/) by Peter Lerup and Dirk Kaar - Installed from GitHub
+- [_SoftwareSerial_](https://github.com/plerup/espsoftwareserial/) by Peter Lerup and Dirk Kaar - Installed from Arduino Library
 
-  ![SoftwareSerial_library](../docs/SoftwareSerial_library.png)
+  ![SoftwareSerial_library](docs/SoftwareSerial_library.png)
 
-- [_TinyGPS_](https://github.com/neosarchizo/TinyGPS) by Mikal Hart - Installed from GitHub
+- [_TinyGPS_](https://github.com/neosarchizo/TinyGPS) by Mikal Hart - Installed from Arduino Library
 
   ![TinyGPS_library](docs/TinyGPS_library.png)
 

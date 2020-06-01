@@ -3,7 +3,6 @@ void setup() {
   Serial.println("\nBooting device...");
 }
 
-void loop() {
-}
+void loop() {}
 
 /* Additional functions */

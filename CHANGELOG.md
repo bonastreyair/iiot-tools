@@ -1,12 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.0.0] - 01-06-2020
 ### Added
 - Code Examples
   - MQTT
-    - publishing
-    - subscribing
+    - Publish
+    - Subscribe
   - WiFi
     - Basic connection
     - Acces Point
@@ -29,15 +29,21 @@ All notable changes to this project will be documented in this file.
   - GPS
   - Ultrasounds
   - LED Light
+    - Basic
+    - RGB
   - OLED Screen
-  - Low Power
-  - Multi Task
+    - SDD1306
+    - U8g2
+  - System
+    - Basic
+    - Low Power
+    - Multi Task
 - Proposed exercises
 - Datasheets for the sensors
 
 ### Changed
 - `README` file list of available code
-- Styled all `C++` codes as Standard
+- Styled all `C++` codes as LLVM
 
 ### Removed 
 - `websockets` from the main list

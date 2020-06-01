@@ -1,8 +1,8 @@
 #include <SoftwareSerial.h>
 #include <TinyGPS.h>
 
-#define RX_PIN 4  // Pinout Rx of ESP32
-#define TX_PIN 3  // Pinout Tx of ESP32
+#define RX_PIN 4 // Pinout Rx of ESP32
+#define TX_PIN 3 // Pinout Tx of ESP32
 
 TinyGPS gps;
 SoftwareSerial Serialgps(RX_PIN, TX_PIN);
@@ -10,7 +10,7 @@ SoftwareSerial Serialgps(RX_PIN, TX_PIN);
 void setup() {
   Serial.begin(9600);
   Serial.println("\nBooting device...");
-  Serialgps.begin(9600);  // Starts gps communication with UART
+  Serialgps.begin(9600); // Starts gps communication with UART
 }
 
 void loop() {
@@ -21,7 +21,8 @@ void loop() {
     char data = Serialgps.read();
     if (gps.encode(data)) {
       gps.f_get_position(&flatitude, &flongitude, &age);
-      Serial.println("[I] - gps - lat: %.4f lon: %.4f age: %ums", flatitude, flongitude, age);
+      Serial.println("[I] - gps - lat: %.4f lon: %.4f age: %ums", flatitude,
+                     flongitude, age);
     } else {
       Serial.println("[E] - data could not be encoded");
     }

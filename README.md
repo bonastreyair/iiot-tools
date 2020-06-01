@@ -67,9 +67,9 @@ All the examples are ordered in the following groups. Navigate through them and 
 ### [Bluetooth](/communications/bluetooth)
 | | Description | Code | Docs |
 |-|:------------|:----:|:----:|
-|[Scanner](/communications/bluetooth/scan) |How to scan the bluetooth space area? |[:x:](/communications/bluetooth/scan/scan.ino)|[:x:](/communications/bluetooth/README.md)|
-|[Server](/communications/bluetooth/server) |How to build a bluetooth server? |[:x:](/communications/bluetooth/server/server.ino)|[:x:](/communications/bluetooth/README.md)|
-|[Client](/communications/bluetooth/client) |How to connect to a bluetooth as a client? |[:x:](/communications/bluetooth/client/client.ino)|[:x:](/communications/bluetooth/README.md)|
+|[Scanner](/communications/bluetooth/scan) |How to scan the bluetooth space area? |[:white_check_mark:](/communications/bluetooth/scan/scan.ino)|[:white_check_mark:](/communications/bluetooth/README.md)|
+|[Server](/communications/bluetooth/server) |How to build a bluetooth server? |[:white_check_mark:](/communications/bluetooth/server/server.ino)|[:white_check_mark:](/communications/bluetooth/README.md)|
+|[Client](/communications/bluetooth/client) |How to connect to a bluetooth as a client? |[:white_check_mark:](/communications/bluetooth/client/client.ino)|[:white_check_mark:](/communications/bluetooth/README.md)|
 
 [[Go to top]](#industrial-internet-of-things-tools)
 
@@ -94,7 +94,7 @@ All the examples are ordered in the following groups. Navigate through them and 
 
 ## Software
 - Arduino IDE 1.8.12 - [Download](https://www.arduino.cc/en/main/software)
-- Node-RED 1.0.5 - [Getting started](https://nodered.org/docs/getting-started/)
+- Node-RED 1.0.6 - [Getting started](https://nodered.org/docs/getting-started/)
 
 ## Contributors
 - [@bonastreyair](https://github.com/bonastreyair)
