@@ -12,32 +12,40 @@
 int scanTime = 5; // In seconds
 BLEScan *pBLEScan;
 
+// We are setting a class named MyAdvertisedDeviceCallbacks
 class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
   void onResult(BLEAdvertisedDevice advertisedDevice) {
     Serial.printf("Advertised Device: %s \n",
                   advertisedDevice.toString().c_str());
+    // As we are scanning, we will find new devices. When found, this call back
+    // is invoked with a reference to the device that was found. During any
+    // individual scan, a device will only be detected one time. And when
+    // calledthis class we will be printing the Advertised Device, every time is
+    // called.
   }
 }
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("Scanning...");
 
-  BLEDevice::init("");
-  pBLEScan = BLEDevice::getScan(); // create new scan
+  // NOW WE SET THE SCAN PARAMETERS
+  BLEDevice::init("");             // we initiate the BLEDevice class object
+  pBLEScan = BLEDevice::getScan(); // returning the scan object in pBLEScan
   pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
-  pBLEScan->setActiveScan(true);
-  pBLEScan->setInterval(100);
-  pBLEScan->setWindow(99); // less or equal setInterval value
+  pBLEScan->setActiveScan(true); // uses more power, but get results faster
+  pBLEScan->setInterval(100);    // Scan interval
+  pBLEScan->setWindow(99);       // Scan window.
+  // The duration of the LE scan shall be <= LE_Scan_Interval
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
+  // put your main code here, to run repeatedly
+  BLEScanResults foundDevices =
+      pBLEScan->start(scanTime, false); // contains all the devices found
   Serial.print("Devices found: ");
   Serial.println(foundDevices.getCount());
   Serial.println("Scan done!");
-  pBLEScan
-      ->clearResults(); // delete results fromBLEScan buffer to release memory
+  pBLEScan->clearResults(); // release memory
   delay(2000);
 }
