@@ -34,8 +34,10 @@ void setup() {
 }
 
 void loop() {
-  for (int y = 20; y <= 64; y = y + 10) {
-    for (int x = 0; x <= 128; x = x + 10) {
+  static int x;
+  static int y;
+  for (y = 20; y <= 64; y = y + 10) {
+    for (x = 0; x <= 128; x = x + 10) {
       display.clearBuffer();
       display.drawGlyph(x, y, 9731); /* dec 9731/hex 2603 Snowman */
       display.sendBuffer();

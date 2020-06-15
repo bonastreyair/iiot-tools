@@ -1,4 +1,4 @@
-#define LED_PIN 3
+#define LED_PIN 25
 
 void setup() {
   Serial.begin(9600);

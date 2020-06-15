@@ -1,5 +1,5 @@
-#define ECHO_PIN 34 // Analog input that receives the echo signal
-#define TRIG_PIN 33 // Digital output that sends the trigger signal
+#define ECHO_PIN 12 // Analog input that receives the echo signal
+#define TRIG_PIN 13 // Digital output that sends the trigger signal
 
 void setup() {
   Serial.begin(9600); // Starts the serial communication
@@ -15,7 +15,7 @@ void loop() {
   distance = getDistance();
   Serial.println("Distance to the object: " + String(distance) + " cm");
 
-  delay(1000); // Check the disntace every 1000 miliseconds
+  delay(500); // Check the disntace every 1000 miliseconds
 }
 
 /* Additional functions */
@@ -28,9 +28,7 @@ float getDistance() {
   delayMicroseconds(10);
   digitalWrite(TRIG_PIN, LOW);
 
-  long duration =
-      pulseIn(ECHO_PIN, HIGH); // pulseIn() returns the duration (length of the
-                               // pulse) in microseconds
+  long duration = pulseIn(ECHO_PIN, HIGH); // pulseIn() returns the duration (length of the pulse) in microseconds
 
-  return duration * 0, 034 / 2; // Returns the distance in cm
+  return duration * 0.034 / 2; // Returns the distance in cm
 }

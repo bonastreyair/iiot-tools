@@ -23,7 +23,7 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
     // calledthis class we will be printing the Advertised Device, every time is
     // called.
   }
-}
+};
 
 void setup() {
   Serial.begin(9600);

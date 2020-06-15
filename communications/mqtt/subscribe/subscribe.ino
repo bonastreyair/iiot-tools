@@ -12,8 +12,10 @@ const char *WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
 char macAddress[18];
 
 // Add MQTT Broker settings
-const char *MQTT_BROKER_IP = "BROKER_IP";
+const char *MQTT_BROKER_IP = "iiot-upc.gleeze.com";
 const int MQTT_PORT = 1883;
+const char *MQTT_USER = "iiot-upc";
+const char *MQTT_PASSWORD = "cim2020";
 const bool RETAINED = true;
 const int QoS = 0; // Quality of Service for the subscriptions
 
@@ -106,7 +108,7 @@ void connectToMqttBroker() {
   Serial.print(
       "Connecting with MQTT Broker: " +
       String(MQTT_BROKER_IP));    // Print the broker which you want to connect
-  mqttClient.connect(macAddress); // Using unique mac address from ESP32
+  mqttClient.connect(macAddress, MQTT_USER, MQTT_PASSWORD); // Using unique mac address from ESP32
   while (!mqttClient.connected()) {
     delay(500);
     Serial.print("..");             // Connecting effect

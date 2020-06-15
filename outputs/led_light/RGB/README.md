@@ -11,29 +11,25 @@ Using an RGB LED.
 
 ### [Code](RGB.ino)
 ```cpp
-#define RED_PIN   5
-#define GREEN_PIN 3
-#define BLUE_PIN  4
+#define RED_PIN 25
+#define GREEN_PIN 14
+#define BLUE_PIN 27
 
 void setup() {
   Serial.begin(9600);
   Serial.println("\nBooting device...");
-  
-  pinMode(RED_PIN, OUTPUT);  // Pinout as output
-  pinMode(RED_PIN, OUTPUT);  // Pinout as output
-  pinMode(RED_PIN, OUTPUT);  // Pinout as output
+
+  pinMode(RED_PIN, OUTPUT); // Pinout as output
+  pinMode(GREEN_PIN, OUTPUT); // Pinout as output
+  pinMode(BLUE_PIN, OUTPUT); // Pinout as output
 }
 
 void loop() {
-  setColor('red');
+  setColor("red");
   delay(1000);
-  setColor('green');
+  setColor("green");
   delay(1000);
-  setColor('white');
-  delay(1000);
-  setRGB(13, 227, 201);  // Mix color
-  delay(1000);
-  setColor('black')  // Turn off
+  setColor("blue");
   delay(1000);
 }
 
@@ -44,17 +40,13 @@ void setRGB(int R, int G, int B) {
   digitalWrite(BLUE_PIN, B);
 }
 
-void setColor(char color) {
-  if (color == 'red') {
-    setRGB(255, 0, 0);
-  } else if (color == 'green') {
-    setRGB(0, 255, 0);
-  } else if (color == 'blue') {
-    setRGB(0, 0, 255);
-  } else if (color == 'white') {
-    setRGB(255, 255, 255);
-  } else if (color == 'black') {
-    setRGB(0, 0, 0);
+void setColor(const char* color) {
+  if (color == "red") {
+    setRGB(1, 0, 0);
+  } else if (color == "green") {
+    setRGB(0, 1, 0);
+  } else if (color == "blue") {
+    setRGB(0, 0, 1);
   }
 }
 ```
