@@ -1,5 +1,5 @@
-#include <SoftwareSerial.h>
 #include <PZEM004Tv30.h>
+#include <SoftwareSerial.h>
 
 // Pin 17 Rx (Connects to the Tx pin on the PZEM)
 // Pin 16 Tx (Connects to the Rx pin on the PZEM)
@@ -15,14 +15,18 @@ void loop() {
   delay(3000);
   float voltage = pzem.voltage();
   if (!isnan(voltage)) {
-    Serial.print("Voltage: "); Serial.print(voltage); Serial.println("V");
+    Serial.print("Voltage: ");
+    Serial.print(voltage);
+    Serial.println("V");
   } else {
     Serial.println("Error reading voltage");
   }
 
   float current = pzem.current();
-  if ( !isnan(current) ) {
-    Serial.print("Current: "); Serial.print(current); Serial.println("A");
+  if (!isnan(current)) {
+    Serial.print("Current: ");
+    Serial.print(current);
+    Serial.println("A");
   } else {
     Serial.println("Error reading current");
   }
@@ -35,22 +39,27 @@ void loop() {
   }
 
   float energy = pzem.energy();
-  if ( !isnan(energy) ) {
-    Serial.print("Energy: "); Serial.print(energy, 3); Serial.println("kWh");
+  if (!isnan(energy)) {
+    Serial.print("Energy: ");
+    Serial.print(energy, 3);
+    Serial.println("kWh");
   } else {
     Serial.println("Error reading energy");
   }
 
   float frequency = pzem.frequency();
-  if ( !isnan(frequency) ) {
-    Serial.print("Frequency: "); Serial.print(frequency, 1); Serial.println("Hz");
+  if (!isnan(frequency)) {
+    Serial.print("Frequency: ");
+    Serial.print(frequency, 1);
+    Serial.println("Hz");
   } else {
     Serial.println("Error reading frequency");
   }
   
   float pf = pzem.pf();
-  if ( !isnan(pf) ) {
-    Serial.print("PF: "); Serial.println(pf);
+  if (!isnan(pf)) {
+    Serial.print("PF: ");
+    Serial.println(pf);
   } else {
     Serial.println("Error reading power factor");
   }

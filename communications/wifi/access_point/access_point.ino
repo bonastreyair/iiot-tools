@@ -1,4 +1,4 @@
-#include <WiFi.h>  // Includes the WiFi library
+#include <WiFi.h> // Includes the WiFi library
 
 /* Put your desired SSID and Password */
 const char *WIFI_SSID = "DESIRED_SSID_NAME";
@@ -10,7 +10,7 @@ IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 
 void setup() {
-  Serial.begin(9600);  // Starts the serial communication
+  Serial.begin(9600); // Starts the serial communication
   Serial.println("\nBooting device...");
 
   WiFi.softAP(WIFI_SSID, WIFI_PASSWORD);
@@ -18,5 +18,4 @@ void setup() {
   Serial.println("ESP32 is now a router WiFi and it is now active");
 }
 
-void loop() {
-}
+void loop() {}

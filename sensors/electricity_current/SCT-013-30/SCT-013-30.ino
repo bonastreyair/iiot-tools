@@ -24,14 +24,15 @@ float readEnergyConsumption() {
   long time = millis();
   int N = 0;
 
-  while (millis() - time < 500) {  // Duración 0.5 segundos (Aprox. 25 ciclos de 50Hz)
+  while (millis() - time <
+         500) { // Duración 0.5 segundos (Aprox. 25 ciclos de 50Hz)
     sensorVoltage = (analogRead(34) * (3.3 / 4095.0)) / 8;
-    current = sensorVoltage * 25.5;  // current = sensorVoltage * (20A / 1V)
-    sumatory = sumatory + sq(current);  // sumatory of square roots
+    current = sensorVoltage * 25.5;    // current = sensorVoltage * (20A / 1V)
+    sumatory = sumatory + sq(current); // sumatory of square roots
     N = N + 1;
     delay(1);
   }
-  sumatory = sumatory * 2;  // compensates the squares of the negative semicicles
-  current = sqrt((sumatory) / N);  // RMS equation
+  sumatory = sumatory * 2; // compensates the squares of the negative semicicles
+  current = sqrt((sumatory) / N); // RMS equation
   return current;
 }
