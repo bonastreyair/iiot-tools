@@ -9,7 +9,7 @@ void loop() {
   delay(3000);
   float tension = 225.00;
   float irms = readEnergyConsumption();  // Corriente eficaz (A)
-  float P = irms * tension;  // P=IV (Watts)
+  float P = irms * tension;  // P = I*V (Watts)
   Serial.print("irms: ");
   Serial.print(irms, 3);
   Serial.print("A, Potencia: ");
