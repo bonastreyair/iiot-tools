@@ -33,3 +33,20 @@ void loop() {
     delay(5000);
   }
 }
+
+void print_date(TinyGPS &gps) {
+  int year;
+  byte month, day, hour, minute, second, hundredths;
+  unsigned long age;
+  gps.crack_datetime(&year, &month, &day, &hour, &minute, &second, &hundredths, &age);
+  if (age == TinyGPS::GPS_INVALID_AGE) {
+    Serial.print("********** ******** ");
+  } else {
+    char gps_datetime[32];
+    sprintf(gps_datetime, "%02d/%02d/%02d %02d:%02d:%02d ",
+        day, month, year, hour, minute, second);
+    Serial.print(gps_datetime);
+  }
+  print_int(age, TinyGPS::GPS_INVALID_AGE, 5);
+  smartdelay(0);
+}
