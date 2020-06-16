@@ -31,6 +31,6 @@ void loop() {
 - No needed libraries
 
 ### Connection
-![Connection basic LED light](../docs/connection_basic.jpeg)
+![Connection basic LED light](../docs/connection_basic.png)
 
 [[Go back]](/outputs/led_light)
