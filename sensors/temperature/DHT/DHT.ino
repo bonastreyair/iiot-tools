@@ -13,8 +13,8 @@ void setup() {
 }
 
 void loop() {
-  static float tempreature;
-  tempreature = dhtSensor.readTemperature(); // Reads the temperature, it takes
+  static float temperature;
+  temperature = dhtSensor.readTemperature(); // Reads the temperature, it takes
                                              // about 250 milliseconds
   Serial.println("Temperature: " + String(temperature) + "°C"); // Prints in a new line the result
 
