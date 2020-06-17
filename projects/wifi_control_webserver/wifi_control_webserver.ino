@@ -2,8 +2,7 @@
 #include <AsyncTCP.h> // Include TCP Library
 #include <ESPAsyncWebServer.h> // Include WebServer Library
 #include <DNSServer.h> // Includes DNS Library
-
-#include "index.h" // Loads webpage
+#include "SPIFFS.h" // Includes SPIFileSystem (install https://github.com/me-no-dev/arduino-esp32fs-plugin)
 
 #define LED_PIN 2
 
@@ -43,6 +42,7 @@ String outputState(int output){
 void setup(){
   Serial.begin(9600); // Starts the serial communication
   Serial.println("\nBooting device...");
+  SPIFFS.begin(); // Start file system
 
   pinMode(LED_PIN, OUTPUT);
 
@@ -71,7 +71,7 @@ void startWebServer() {
 }
 
 void startWeb(AsyncWebServerRequest *request) {
-  request->send_P(200, "text/html", indexHTML, processor);
+  request->send(SPIFFS, "/index.html", String(), false, processor);
 }
 
 // Send a GET request to <ESP_IP>/command?state=<stateMessage>

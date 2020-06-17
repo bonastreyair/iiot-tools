@@ -3,8 +3,7 @@
 #include <AsyncTCP.h> // Include TCP Library
 #include <ESPAsyncWebServer.h> // Include WebServer Library
 #include <DNSServer.h> // Includes DNS Library
-
-#include "index.h" // Loads webpage
+#include "SPIFFS.h" // Includes SPIFileSystem (install https://github.com/me-no-dev/arduino-esp32fs-plugin)
 
 #define DHT_PIN 4 // Defines pin number to which the sensor is connected
 #define DHT_TYPE DHT22 // Defines the sensor type. It can be DHT11 or DHT22
@@ -26,6 +25,7 @@ float temperature; // Global variable
 void setup() {
   Serial.begin(9600); // Starts the serial communication
   Serial.println("\nBooting device...");
+  SPIFFS.begin(); // Start file system
   
   startAP(); // Starts Access Point
   startWebServer(); // Starts WebServer
@@ -72,7 +72,7 @@ void helloWorld(AsyncWebServerRequest *request) {
 
 void serveIndex(AsyncWebServerRequest *request) {
   Serial.println("Client made a GET to 192.168.1.1 to read the latest temperature");
-  request->send_P(200, "text/html", indexHTML, processor);
+  request->send(SPIFFS, "/index.html", String(), false, processor);
 }
 
 void notFound(AsyncWebServerRequest *request) {
